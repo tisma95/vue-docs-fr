@@ -230,7 +230,7 @@ Nous vous recommandons d'utiliser `@vue/test-utils` pour tester les composants d
 
 - [Nightwatch](https://nightwatchjs.org/) est un testeur E2E avec prise en charge de Vue Component Testing. ([Projet d'exemple](https://github.com/nightwatchjs-community/todo-vue))
 
-- [WebdriverIO](https://webdriver.io/docs/component-testing/vue) pour les tests de composants inter-navigateurs qui reposent sur une interaction utilisateur native basée sur une automatisation standardisée. Peut également être utilisé avec la bibliothèque de tests. 
+- [WebdriverIO](https://webdriver.io/docs/component-testing/vue) pour les tests de composants inter-navigateurs qui reposent sur une interaction utilisateur native basée sur une automatisation standardisée. Peut également être utilisé avec la bibliothèque de tests.
 
 ## Tests E2E {#e2e-testing}
 
@@ -276,13 +276,13 @@ Lorsque les tests End-to-end (E2E) sont exécutés dans des pipelines d'intégra
 
 ### Autres options {#other-options-2}
 
-- [Playwright](https://playwright.dev/) est également une excellente solution de test E2E avec une gamme plus large de support de navigateur (principalement WebKit). Voir [Pourquoi dramaturge](https://playwright.dev/docs/why-dramaturge) pour plus de détails.
+- [Playwright](https://playwright.dev/) est également une excellente solution de test E2E avec une gamme plus large de support de navigateur (principalement WebKit). Voir [Pourquoi Playwright](https://playwright.dev/docs/why-playwright) pour plus de détails.
 
 - [Nightwatch](https://nightwatchjs.org/) est une solution de test E2E basée sur [Selenium WebDriver](https://www.npmjs.com/package/selenium-webdriver). Cela lui donne la gamme de support de navigateur la plus large.
 
 - [WebdriverIO](https://webdriver.io/) est un framework d'automatisation des tests pour les tests Web et mobiles basé sur le protocole WebDriver.
 
-## Recipes {#recipes}
+## Recettes {#recipes}
 
 ### Ajouter Vitest a un projet {#adding-vitest-to-a-project}
 
@@ -411,13 +411,13 @@ export function withSetup(composable) {
   const app = createApp({
     setup() {
       result = composable()
-      // suppress missing template warning
+      // supprime l'avertissement du template manquant
       return () => {}
     }
   })
   app.mount(document.createElement('div'))
-  // return the result and the app instance
-  // for testing provide / unmount
+  // renvoie le résultat et l'instance de l'application
+  // pour les tests, provide / unmount
   return [result, app]
 }
 ```
@@ -428,11 +428,11 @@ import { useFoo } from './foo'
 
 test('useFoo', () => {
   const [result, app] = withSetup(() => useFoo(123))
-  // mock provide for testing injections
+  // simule provide pour tester les injections
   app.provide(...)
-  // run assertions
+  // exécute les assertions
   expect(result.foo.value).toBe(1)
-  // trigger onUnmounted hook if needed
+  // déclenche le hook onUnmounted si nécessaire
   app.unmount()
 })
 ```

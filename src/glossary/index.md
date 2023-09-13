@@ -1,6 +1,10 @@
 # Glossaire {#glossary}
 
-This glossary is intended to provide some guidance about the meanings of technical terms that are in common usage when talking about Vue. It is intended to be *descriptive* of how terms are commonly used, not a *prescriptive* specification of how they must be used. Some terms may have slightly different meanings or nuances depending on the surrounding context.
+:::warning Traduction en cours
+Notre équipe de traduction travaille sur la traduction du glossaire, vous pouvez rencontrer du contenu non traduit.
+:::
+
+Ce glossaire est destiné à fournir la signification des termes techniques couramment utilisés lorsque l'on parle de Vue. Il est destiné à être *descriptif* sur la façon dont les termes sont couramment utilisés, et non une spécification *prescriptive* de la façon dont ils doivent être utilisés. Certains termes peuvent avoir des significations ou des nuances légèrement différentes selon le contexte environnant.
 
 [[TOC]]
 
@@ -13,25 +17,25 @@ Vue Router dispose d'une fonctionnalité similaire pour le [chargement paresseux
 Pour plus de détails, voir :
 - [Guide - Composants asynchrones](/guide/components/async.html)
 
-## compiler macro {#compiler-macro}
+## macro de compilateur {#compiler-macro}
 
-A *compiler macro* is special code that is processed by a compiler and converted into something else. They are effectively a clever form of string replacement.
+Une *macro de compilateur* est un code spécial qui est traité par un compilateur et converti en quelque chose d'autre. Ils sont en fait une forme astucieuse de remplacement de chaînes de caractères.
 
-Vue's [SFC](#single-file-component) compiler supports various macros, such as `defineProps()`, `defineEmits()` and `defineExpose()`. These macros are intentionally designed to look like normal JavaScript functions so that they can leverage the same parser and type inference tooling around JavaScript / TypeScript. However, they are not actual functions that are run in the browser. These are special strings that the compiler detects and replaces with the real JavaScript code that will actually be run.
+Le compilateur [SFC](#single-file-component) de Vue prend en charge diverses macros, telles que `defineProps()`, `defineEmits()` et `defineExpose()`. Ces macros sont intentionnellement conçues pour ressembler à des fonctions JavaScript normales afin qu'elles puissent tirer parti du même analyseur et des mêmes outils d'inférence de type autour de JavaScript / TypeScript. Cependant, elles ne sont pas des fonctions réelles exécutées dans le navigateur. Ce sont des chaînes de caractères spéciales que le compilateur détecte et remplace par le vrai code JavaScript qui sera réellement exécuté.
 
-Macros have limitations on their use that don't apply to normal JavaScript code. For example, you might think that `const dp = defineProps` would allow you to create an alias for `defineProps`, but it'll actually result in an error. There are also limitations on what values can be passed to `defineProps()`, as the 'arguments' have to be processed by the compiler and not at runtime.
+Les macros ont des limites d'utilisation qui ne s'appliquent pas au code JavaScript normal. Par exemple, vous pourriez penser que `const dp = defineProps` vous permettrait de créer un alias pour `defineProps`, mais cela entraînera en fait une erreur. Il existe également des limitations sur les valeurs pouvant être transmises à `defineProps()`, car les 'arguments' doivent être traités par le compilateur et non au moment de l'exécution.
 
-For more details see:
+Pour plus de détails, voir :
 - [`<script setup>` - `defineProps()` & `defineEmits()`](/api/sfc-script-setup.html#defineprops-defineemits)
 - [`<script setup>` - `defineExpose()`](/api/sfc-script-setup.html#defineexpose)
 
-## component {#component}
+## composant {#component}
 
-The term *component* is not unique to Vue. It is common to many UI frameworks. It describes a chunk of the UI, such as a button or checkbox. Components can also be combined to form larger components.
+Le terme *composant* n'est pas propre à Vue. Il est commun à de nombreux frameworks d'interface utilisateur. Il décrit une partie de l'interface utilisateur, comme un bouton ou une case à cocher. Les composants peuvent également être combinés pour former des composants plus grands.
 
-Components are the primary mechanism provided by Vue to split a UI into smaller pieces, both to improve maintainability and to allow for code reuse.
+Les composants sont le principal mécanisme fourni par Vue pour diviser une interface utilisateur en plus petits éléments, à la fois pour améliorer la maintenabilité et pour permettre la réutilisation du code.
 
-A Vue component is an object. All properties are optional, but either a template or render function is required for the component to render. For example, the following object would be a valid component:
+Un composant Vue est un objet. Toutes les propriétés sont facultatives, mais un template ou une fonction de rendu est requis pour que le composant soit rendu. Par exemple, l'objet suivant serait un composant valide :
 
 ```js
 const HelloWorldComponent = {
@@ -41,36 +45,36 @@ const HelloWorldComponent = {
 }
 ```
 
-In practice, most Vue applications are written using [Single-File Components](#single-file-component) (`.vue` files). While these components may not appear to be objects at first glance, the SFC compiler will convert them into an object, which is used as the default export for the file. From an external perspective, a `.vue` file is just an ES module that exports a component object.
+En pratique, la plupart des applications Vue sont écrites en utilisant des [composants monofichiers](#single-file-component) (fichiers `.vue`). Bien que ces composants puissent ne pas sembler être des objets à première vue, le compilateur SFC les convertira en un objet, qui sera utilisé comme exportation par défaut pour le fichier. D'un point de vue externe, un fichier `.vue` n'est qu'un module ES qui exporte un objet composant.
 
-The properties of a component object are usually referred to as *options*. This is where the [Options API](#options-api) gets its name.
+Les propriétés d'un objet composant sont généralement appelées *options*. C'est là que l'[Options API](#options-api) tire son nom.
 
-The options for a component define how instances of that component should be created. Components are conceptually similar to classes, though Vue doesn't use actual JavaScript classes to define them.
+Les options d'un composant définissent comment les instances de ce composant doivent être créées. Les composants sont conceptuellement similaires aux classes, bien que Vue n'utilise pas de classes JavaScript réelles pour les définir.
 
-The term component can also be used more loosely to refer to component instances.
+Le terme composant peut également être utilisé plus librement pour désigner des instances de composant.
 
-For more details see:
-- [Guide - Component Basics](/guide/essentials/component-basics.html)
+Pour plus de détails, voir :
+- [Guide - Principes fondamentaux des composants](/guide/essentials/component-basics.html)
 
-The word 'component' also features in several other terms:
-- [async component](#async-component)
+Le mot « composant » apparaît également dans plusieurs autres termes :
+- [composant async](#async-component)
 - [composant dynamique](#dynamic-component)
-- [functional component](#functional-component)
+- [component fonctionnel](#functional-component)
 - [Web Component](#web-component)
 
 ## composable {#composable}
 
-The term *composable* describes a common usage pattern in Vue. It isn't a separate feature of Vue, it's just a way of using the framework's [Composition API](#composition-api).
+Le terme *composable* décrit un modèle d'utilisation courant dans Vue. Il ne s'agit pas d'une fonctionnalité distincte de Vue, mais simplement d'un moyen d'utiliser la [Composition API](#composition-api) du framework.
 
-* A composable is a function.
-* Composables are used to encapsulate and reuse stateful logic.
-* The function name usually begins with `use`, so that other developers know it's a composable.
-* The function is typically expected to be called during the synchronous execution of a component's `setup()` function (or, equivalently, during the execution of a `<script setup>` block). This ties the invocation of the composable to the current component context, e.g. via calls to `provide()`, `inject()` or `onMounted()`.
-* Composables typically return a plain object, not a reactive object. This object usually contains refs and functions and is expected to be destructured within the calling code.
+* Un composable est une fonction.
+* Les composables sont utilisés pour encapsuler et réutiliser la logique avec état.
+* Le nom de la fonction commence généralement par `use`, afin que les autres développeurs sachent qu'il s'agit d'une fonction composable.
+* La fonction est typiquement censée être appelée pendant l'exécution synchrone de la fonction `setup()` d'un composant (ou, de manière équivalente, pendant l'exécution d'un bloc `<script setup>`). Cela lie l'invocation du composable au contexte actuel du composant, par exemple via des appels à `provide()`, `inject()` ou `onMounted()`.
+* Les composables renvoient généralement un objet simple, et non un objet réactif. Cet objet contient généralement des références et des fonctions et est censé être déstructuré dans le code appelant.
 
-As with many patterns, there can be some disagreement about whether specific code qualifies for the label. Not all JavaScript utility functions are composables. If a function doesn't use the Composition API then it probably isn't a composable. If it doesn't expect to be called during the synchronous execution of `setup()` then it probably isn't a composable. Composables are specifically used to encapsulate stateful logic, they are not just a naming convention for functions.
+Comme pour de nombreux modèles, il peut y avoir des désaccords sur la question de savoir si un code spécifique peut prétendre au label. Toutes les fonctions utilitaires JavaScript ne sont pas composables. Si une fonction n'utilise pas la Composition API, elle n'est probablement pas composable. Si elle ne s'attend pas à être appelée pendant l'exécution synchrone de `setup()` alors elle n'est probablement pas composable. Les composables sont spécifiquement utilisés pour encapsuler la logique avec état, ils ne sont pas simplement une convention d'appellation pour les fonctions.
 
-See [Guide - Composables](/guide/reusability/composables.html) for more details about writing composables.
+Voir le [Guide - Composables](/guide/reusability/composables.html) pour plus de détails sur l'écriture des composables.
 
 ## Composition API {#composition-api}
 
@@ -80,28 +84,28 @@ Le terme est également utilisé pour décrire l'un des deux styles principaux u
 
 Voir la [FAQ de la Composition API](/guide/extras/composition-api-faq) pour plus de détails.
 
-## custom element {#custom-element}
+## élément personnalisé {#custom-element}
 
-A *custom element* is a feature of the [Web Components](#web-component) standard, which is implemented in modern web browsers. It refers to the ability to use a custom HTML element in your HTML markup to include a Web Component at that point in the page.
+Un *élément personnalisé* est une fonctionnalité de la norme des [Web Components](#web-component), qui est mise en œuvre dans les navigateurs web modernes. Il s'agit de la possibilité d'utiliser un élément HTML personnalisé dans votre balisage HTML pour inclure un Web Component à cet endroit de la page.
 
-Vue has built-in support for rendering custom elements and allows them to be used directly in Vue component templates.
+Vue prend en charge nativement le rendu des éléments personnalisés et permet de les utiliser directement dans les templates de composants Vue.
 
-Custom elements should not be confused with the ability to include Vue components as tags within another Vue component's template. Custom elements are used to create Web Components, not Vue components.
+Les éléments personnalisés ne doivent pas être confondus avec la possibilité d'inclure des composants Vue en tant que balises dans le template d'un autre composant Vue. Les éléments personnalisés sont utilisés pour créer des Web Components, et non des composants Vue.
 
-For more details see:
-- [Guide - Vue and Web Components](/guide/extras/web-components.html)
+Pour plus de détails, voir :
+- [Vue et les Web Components](/guide/extras/web-components.html)
 
 ## directive {#directive}
 
-The term *directive* refers to template attributes beginning with the `v-` prefix, or their equivalent shorthands.
+Le terme *directive* fait référence aux attributs de template commençant par le préfixe `v-`, ou à leurs abréviations équivalentes.
 
-Built-in directives include `v-if`, `v-for`, `v-bind`, `v-on` and `v-slot`.
+Les directives intégrées comprennent `v-if`, `v-for`, `v-bind`, `v-on` et `v-slot`.
 
-Vue also supports creating custom directives, though they are typically only used as an 'escape hatch' for manipulating DOM nodes directly. Custom directives generally can't be used to recreate the functionality of the built-in directives.
+Vue permet également de créer des directives personnalisées, bien qu'elles ne soient généralement utilisées comme une 'trappe d'accès' pour manipuler directement les nœuds du DOM. Les directives personnalisées ne peuvent généralement pas être utilisées pour recréer la fonctionnalité des directives intégrées.
 
-For more details see:
-- [Guide - Template Syntax - Directives](/guide/essentials/template-syntax.html#directives)
-- [Guide - Custom Directives](/guide/reusability/custom-directives.html)
+Pour plus de détails, voir :
+- [Guide - Syntaxe de template - Directives](/guide/essentials/template-syntax.html#directives)
+- [Guide - Directives personnalisées](/guide/reusability/custom-directives.html)
 
 ## composant dynamique {#dynamic-component}
 
@@ -126,76 +130,76 @@ Pour plus de détails, voir :
 
 ## fragment {#fragment}
 
-The term *fragment* refers to a special type of [VNode](#vnode) that is used as a parent for other VNodes, but which doesn't render any elements itself.
+Le terme *fragment* se réfère à un type special de [VNode](#vnode) qui est utilisé comme parent pour les autres VNodes, mais qui ne rend aucun élément lui-même.
 
-The name comes from the similar concept of a [`DocumentFragment`](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment) in the native DOM API.
+Le nom provient d'un concept similaire au [`DocumentFragment`](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment) dans le DOM API natif.
 
-Fragments are used to support components with multiple root nodes. While such components might appear to have multiple roots, behind the scenes they use a fragment node as a single root, as a parent of the 'root' nodes.
+Les fragments sont utilisés pour supporter les composants avec de multiples noeuds parent. Bien que ces composant peuvent donner l'impression d'avoir plusieurs noeuds parent, dans les coulisses ils utilisent un noeud fragment comme unique parent, comme parent des noeuds 'racine'.
 
-Fragments are also used by the template compiler as a way to wrap multiple dynamic nodes, e.g. those created via `v-for` or `v-if`. This allows for extra hints to be passed to the [VDOM](#virtual-dom) patching algorithm. Much of this is handled internally, but one place you may encounter this directly is using a `key` on a `<template>` tag with `v-for`. In that scenario, the `key` is added as a [prop](#prop) to the fragment VNode.
+Les fragments sont aussi utilisées par le compilateur de template comme un moyen d'envelopper plusieurs noeuds dynamiques, par exemple ceux créés avec `v-for` ou `v-if`. Cela permet de passer des informations supplémentaires à l'algorithme de correction du [VDOM](#virtual-dom). La majorité est gérée en interne, mais un endroit où vous pourriez rencontrer cela directement est en utilisant `key` sur un élément `<template>` avec `v-for`. Dans ce scénario, `key` est ajouté comme une [prop](#prop) au fragment VNode.
 
-Fragment nodes are currently rendered to the DOM as empty text nodes, though that is an implementation detail. You may encounter those text nodes if you use `$el` or attempt to walk the DOM with built-in browser APIs.
+Les noeuds fragment sont actuellement rendus dans le DOM en tant que noeuds de texte vides, cependant ceci est un détails d'implémentation. Vous pourriez rencontrer ces noeuds texte si vous utilisez `$el` ou essayez de parcourir le DOM avec des API intégrées à votre navigateur.
 
-## functional component {#functional-component}
+## composant fonctionnel {#functional-component}
 
-A component definition is usually an object containing options. It may not appear that way if you're using `<script setup>`, but the component exported from the `.vue` file will still be an object.
+Une définition de composant est généralement un objet contenant des options. Cela peut sembler différent si vous utilisez `<script setup>`, mais le composant exporté depuis le fichier `.vue` sera toujours un objet.
 
-A *functional component* is an alternative form of component that is declared using a function instead. That function acts as the [render function](#render-function) for the component.
+Un *composant fonctionnel* est une autre forme de composant déclaré à l'aide d'une fonction. Cette fonction fait office de [fonction de rendu](#render-function) pour le composant.
 
-A functional component cannot have any state of its own. It also doesn't go through the usual component lifecycle, so lifecycle hooks can't be used. This makes them slightly lighter than normal, stateful components.
+Un composant fonctionnel ne peut pas avoir d'état propre. Il ne passe pas non plus par le cycle de vie habituel des composants, de sorte que les hooks de cycle de vie ne peuvent pas être utilisés. Ils sont donc légèrement plus légers que les composants habituels avec état.
 
-For more details see:
-- [Guide - Render Functions & JSX - Functional Components](/guide/extras/render-function.html#functional-components)
+Pour plus de détails, voir :
+- [Guide - Fonctions de rendu et JSX - Composants fonctionnels](/guide/extras/render-function.html#functional-components)
 
-## hoisting {#hoisting}
+## hissage (ou _hoisting_) {#hoisting}
 
-The term *hoisting* is used to describe running a section of code before it is reached, ahead of other code. The execution is 'pulled up' to an earlier point.
+Le terme *hissage* est utilisé pour décrire l'exécution d'une section de code avant qu'elle ne soit atteinte, avant d'autres codes. L'exécution est 'tirée vers le haut' à un point antérieur.
 
-JavaScript uses hoisting for some constructs, such as `var`, `import` and function declarations.
+JavaScript utilise le hissage pour certaines constructions, telles que `var`, `import` et les déclarations de fonctions.
 
-In a Vue context, the template compiler applies *static hoisting* to improve performance. When converting a template to a render function, VNodes that correspond to static content can be created once and then reused. These static VNodes are described as hoisted because they are created outside the render function, before it runs. A similar form of hoisting is applied to static objects or arrays that are generated by the template compiler.
+Dans le contexte de Vue, le compilateur de template applique le *hissage statique* pour améliorer les performances. Lors de la conversion d'un template en fonction de rendu, les VNodes correspondant au contenu statique peuvent être créés une fois et réutilisés. Ces VNodes statiques sont décrits comme hissés parce qu'ils sont créés en dehors de la fonction de rendu, avant qu'elle ne s'exécute. Une forme similaire de hissage est appliquée aux objets statiques ou aux tableaux générés par le compilateur de template.
 
-For more details see:
-- [Guide - Rendering Mechanism - Static Hoisting](/guide/extras/rendering-mechanism.html#static-hoisting)
+Pour plus de détails, voir :
+- [Guide - Mécanismes de rendu - Hissage statique](/guide/extras/rendering-mechanism.html#static-hoisting)
 
-## in-DOM template {#in-dom-template}
+## template depuis le DOM {#in-dom-template}
 
-There are various ways to specify a template for a component. In most cases the template is provided as a string.
+Il existe plusieurs façons de spécifier un template pour un composant. Dans la plupart des cas, le template est fourni sous la forme d'une chaîne de caractères.
 
-The term *in-DOM template* refers to the scenario where the template is provided in the form of DOM nodes, instead of a string. Vue then converts the DOM nodes into a template string using `innerHTML`.
+Le terme *template depuis le DOM* fait référence au scénario dans lequel le template est fourni sous la forme de nœuds DOM, au lieu d'une chaîne de caractères. Vue convertit ensuite les nœuds du DOM en une chaîne de caractères à l'aide de `innerHTML`.
 
-Typically, an in-DOM template starts off as HTML markup written directly in the HTML of the page. The browser then parses this into DOM nodes, which Vue then uses to read off the `innerHTML`.
+Typiquement, un template depuis le DOM commence par un balisage HTML écrit directement dans le HTML de la page. Le navigateur l'analyse ensuite en nœuds DOM, que Vue utilise ensuite pour lire le `innerHTML`.
 
-For more details see:
-- [Guide - Creating an Application - In-DOM Root Component Template](/guide/essentials/application.html#in-dom-root-component-template)
-- [Guide - Component Basics - DOM Template Parsing Caveats](/guide/essentials/component-basics.html#dom-template-parsing-caveats)
-- [Options: Rendering - template](/api/options-rendering.html#template)
+Pour plus de détails, voir :
+- [Guide - Créer une application - Template de composant racine depuis le DOM](/guide/essentials/application.html#in-dom-root-component-template)
+- [Guide - Principes fondamentaux des composants - Mises en garde concernant l'analyse du template DOM](/guide/essentials/component-basics.html#dom-template-parsing-caveats)
+- [Options: Rendu - template](/api/options-rendering.html#template)
 
 ## inject {#inject}
 
-See [provide / inject](#provide-inject).
+Voir [provide / inject](#provide-inject).
 
-## lifecycle hooks {#lifecycle-hooks}
+## hooks du cycle de vie {#lifecycle-hooks}
 
-A Vue component instance goes through a lifecycle. For example, it is created, mounted, updated, and unmounted.
+Une instance de composant Vue suit un cycle de vie. Par exemple, elle est créée, montée, mise à jour et démontée.
 
-The *lifecycle hooks* are a way to listen for these lifecycle events.
+Les *hooks du cycle de vie* sont un moyen d'écouter ces événements du cycle de vie.
 
-With the Options API, each hook is provided as a separate option, e.g. `mounted`. The Composition API uses functions instead, such as `onMounted()`.
+Avec l'Option API, chaque hook est fourni comme une option séparée, par exemple `mounted`. La Composition API utilise des fonctions à la place, comme `onMounted()`.
 
-For more details see:
-- [Guide - Lifecycle Hooks](/guide/essentials/lifecycle.html)
+Pour plus de détails, voir :
+- [Guide - Les hooks du cycle de vie](/guide/essentials/lifecycle.html)
 
 ## macro {#macro}
 
-See [compiler macro](#compiler-macro).
+Voir [macro de compilateur](#compiler-macro).
 
-## named slot {#named-slot}
+## slot nommé {#named-slot}
 
-A component can have multiple slots, differentiated by name. Slots other than the default slot are referred to as *named slots*.
+Un composant peut avoir plusieurs slots, différenciés par leur nom. Les autres slots que le slot par défaut sont appelés *slots nommés*.
 
-For more details see:
-- [Guide - Slots - Named Slots](/guide/components/slots.html#named-slots)
+Pour plus de détails, voir :
+- [Guide - Slots - Slots nommés](/guide/components/slots.html#named-slots)
 
 ## Options API {#options-api}
 
@@ -215,7 +219,7 @@ While the term *plugin* can be used in a wide variety of contexts, Vue has a spe
 
 Plugins are added to an application by calling `app.use(plugin)`. The plugin itself is either a function or an object with an `install` function. That function will be passed the application instance and can then do whatever it needs to do.
 
-For more details see:
+Pour plus de détails, voir :
 - [Guide - Plugins](/guide/reusability/plugins.html)
 
 ## prop {#prop}
@@ -236,22 +240,22 @@ In all cases, props are properties that are passed in from elsewhere.
 
 While the word props is derived from the word *properties*, the term props has a much more specific meaning in the context of Vue. You should avoid using it as an abbreviation of properties.
 
-For more details see:
+Pour plus de détails, voir :
 - [Guide - Props](/guide/components/props.html)
 - [Guide - Render Functions & JSX](/guide/extras/render-function.html)
 - [Guide - Slots - Scoped Slots](/guide/components/slots.html#scoped-slots)
 
 ## provide / inject {#provide-inject}
 
-`provide` and `inject` are a form of inter-component communication.
+`provide` et `inject` sont une forme de communication inter-composants.
 
-When a component *provides* a value, all descendants of that component can then choose to grab that value, using `inject`. Unlike with props, the providing component doesn't know precisely which component is receiving the value.
+Lorsqu'un composant *fournit* une valeur, tous les descendants de ce composant peuvent alors choisir de récupérer cette valeur, en utilisant `inject`. Contrairement à ce qui se passe avec les props, le composant qui fournit la valeur ne sait pas précisément quel composant la reçoit.
 
-`provide` and `inject` are sometimes used to avoid *prop drilling*. They can also be used as an implicit way for a component to communicate with its slot contents.
+`provide` et `inject` sont un moyen parfois utilisé pour éviter le *prop drilling* ou également de manière implicite pour un composant de communiquer avec le contenu de son slot.
 
-`provide` can also be used at the application level, making a value available to all components within that application.
+`provide` peut également être utilisée au niveau de l'application, en rendant une valeur disponible pour tous les composants de cette application.
 
-For more details see:
+Pour plus de détails, voir :
 - [Guide - provide / inject](/guide/components/provide-inject.html)
 
 ## reactive effect {#reactive-effect}
@@ -264,7 +268,7 @@ Vue can only track reactive dependencies within a reactive effect. If a property
 
 The term is derived from 'side effect'. Calling the effect function is a side effect of the property value being changed.
 
-For more details see:
+Pour plus de détails, voir :
 - [Guide - Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
 
 ## reactivity {#reactivity}
@@ -277,20 +281,20 @@ There are various different ways that a reactivity system could be implemented. 
 
 Instead, Vue's reactivity system tracks property access at runtime. It does this using both Proxy wrappers and getter/setter functions for properties.
 
-For more details see:
+Pour plus de détails, voir :
 - [Guide - Reactivity Fundamentals](/guide/essentials/reactivity-fundamentals.html)
 - [Guide - Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
 
-## Reactivity API {#reactivity-api}
+## API de réactivité {#reactivity-api}
 
-The *Reactivity API* is a collection of core Vue functions related to [reactivity](#reactivity). These can be used independently of components. It includes functions such as `ref()`, `reactive()`, `computed()`, `watch()` and `watchEffect()`.
+L'*API de réactivité* est une collection de fonctions de base de Vue liées à la [réactivité](#reactivity). Ils peuvent être utilisés indépendamment des composants. Elle comprend des fonctions telles que `ref()`, `reactive()`, `computed()`, `watch()` et `watchEffect()`.
 
-The Reactivity API is a subset of the Composition API.
+L'API de réactivité est un sous-ensemble de la Composition API.
 
-For more details see:
-- [Reactivity API: Core](/api/reactivity-core.html)
-- [Reactivity API: Utilities](/api/reactivity-utilities.html)
-- [Reactivity API: Advanced](/api/reactivity-advanced.html)
+Pour plus de détails, voir :
+- [API de la réactivité : Essentiel](/api/reactivity-core.html)
+- [API de la réactivité : Utilitaires](/api/reactivity-utilities.html)
+- [API de la réactivité : Avancé](/api/reactivity-advanced.html)
 
 ## ref {#ref}
 
@@ -300,18 +304,18 @@ A `ref` is part of Vue's reactivity system. It is an object with a single reacti
 
 There are various different types of ref. For example, refs can be created using `ref()`, `shallowRef()`, `computed()`, and `customRef()`. The function `isRef()` can be used to check whether an object is a ref, and `isReadonly()` can be used to check whether the ref allows the direct reassignment of its value.
 
-For more details see:
+Pour plus de détails, voir :
 - [Guide - Reactivity Fundamentals](/guide/essentials/reactivity-fundamentals.html)
 - [Reactivity API: Core](/api/reactivity-core.html)
 - [Reactivity API: Utilities](/api/reactivity-utilities.html)
 - [Reactivity API: Advanced](/api/reactivity-advanced.html)
 
-## render function {#render-function}
+## fonction de rendu {#render-function}
 
-A *render function* is the part of a component that generates the VNodes used during rendering. Templates are compiled down into render functions.
+Une *fonction de rendu* est la partie d'un composant qui génère les VNodes utilisés lors du rendu. Les templates sont compilés en fonctions de rendu.
 
-For more details see:
-- [Guide - Render Functions & JSX](/guide/extras/render-function.html)
+Pour plus de détails, voir :
+- [Guide - Fonctions de rendu et JSX](/guide/extras/render-function.html)
 
 ## scheduler {#scheduler}
 
@@ -333,7 +337,7 @@ In Vue 3, the slot APIs were simplified to make all slots behave like scoped slo
 
 The props passed to a slot can only be used within a specific region of the parent template, responsible for defining the slot's contents. This region of the template behaves as a variable scope for the props, hence the name 'scoped slot'.
 
-For more details see:
+Pour plus de détails, voir :
 - [Guide - Slots - Scoped Slots](/guide/components/slots.html#scoped-slots)
 
 ## SFC {#sfc}
@@ -360,9 +364,9 @@ See also:
 
 ## slot {#slot}
 
-Slots are used to pass content to child components. Whereas props are used to pass data values, slots are used to pass richer content consisting of HTML elements and other Vue components.
+Les slots sont utilisés pour transmettre du contenu aux composants enfants. Alors que les props sont utilisés pour transmettre des données, les slots sont utilisés pour transmettre un contenu plus riche composé d'éléments HTML et d'autres composants Vue.
 
-For more details see:
+Pour plus de détails, voir :
 - [Guide - Slots](/guide/components/slots.html)
 
 ## template ref {#template-ref}
@@ -375,7 +379,7 @@ With the Composition API, template refs populate a reactive [ref](#ref) with the
 
 Template refs should not be confused with the reactive refs found in Vue's reactivity system.
 
-For more details see:
+Pour plus de détails, voir :
 - [Guide - Template Refs](/guide/essentials/template-refs.html)
 
 ## VDOM {#vdom}
@@ -396,21 +400,21 @@ Every time a component re-renders, the new tree of VNodes is compared to the pre
 
 Vue uses a hybrid approach that we call [Compiler-Informed Virtual DOM](/guide/extras/rendering-mechanism.html#compiler-informed-virtual-dom). Vue's template compiler is able to apply performance optimizations based on static analysis of the template. Rather than performing a full comparison of a component's old and new VNode trees at runtime, Vue can use information extracted by the compiler to reduce the comparison to just the parts of the tree that can actually change.
 
-For more details see:
+Pour plus de détails, voir :
 - [Guide - Rendering Mechanism](/guide/extras/rendering-mechanism.html)
 - [Guide - Render Functions & JSX](/guide/extras/render-function.html)
 
 ## VNode {#vnode}
 
-A *VNode* is a *virtual DOM node*. They can be created using the [`h()`](/api/render-function.html#h) function.
+Un *VNode* est un *nœud virtuel du DOM*. Ils peuvent être créés à l'aide de la fonction [`h()`](/api/render-function.html#h).
 
-See [virtual DOM](#virtual-dom) for more information.
+Voir [virtual DOM](#virtual-dom) pour plus d'informations.
 
 ## Web Component {#web-component}
 
-The *Web Components* standard is a collection of features implemented in modern web browsers.
+La norme *Web Components* est un ensemble de fonctionnalités mises en œuvre dans les navigateurs web modernes.
 
-Vue components are not Web Components, but `defineCustomElement()` can be used to create a [custom element](#custom-element) from a Vue component. Vue also supports the use of custom elements inside Vue components.
+Les composants Vue ne sont pas des Web Components, mais `defineCustomElement()` peut être utilisé pour créer un [élément personnalisé](#custom-element) à partir d'un composant Vue. Vue prend également en charge l'utilisation d'éléments personnalisés à l'intérieur des composants Vue.
 
-For more details see:
-- [Guide - Vue and Web Components](/guide/extras/web-components.html)
+Pour plus de détails, voir :
+- [Guide - Vue et les Web Components](/guide/extras/web-components.html)

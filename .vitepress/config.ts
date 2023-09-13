@@ -256,7 +256,7 @@ export const sidebar: ThemeConfig['sidebar'] = {
       ]
     },
     {
-      text: 'Scaling Up',
+      text: 'Approfondir',
       items: [
         { text: 'Composants monofichiers', link: '/guide/scaling-up/sfc' },
         { text: 'Outils', link: '/guide/scaling-up/tooling' },
@@ -308,7 +308,7 @@ export const sidebar: ThemeConfig['sidebar'] = {
       ]
     },
     {
-      text: 'Extra Topics',
+      text: 'Sujets additionnels',
       items: [
         {
           text: "Manières d'utiliser Vue",
@@ -695,6 +695,16 @@ export default defineConfigWithTheme<ThemeConfig>({
         link: 'https://fr.vuejs.org',
         text: 'Français',
         repo: 'https://github.com/vuejs-translations/docs-fr'
+      },
+      {
+        link: 'https://ko.vuejs.org',
+        text: '한국어',
+        repo: 'https://github.com/vuejs-translations/docs-ko'
+      },
+      {
+        link: 'https://pt.vuejs.org',
+        text: 'Português',
+        repo: 'https://github.com/vuejs-translations/docs-pt'
       },
       {
         link: '/translations/',

@@ -21,7 +21,7 @@ Il est également recommandé d'utiliser ces terrains de jeu en ligne pour fourn
 
 Pour commencer avec Vite + Vue, exécutez simplement :
 
-<div class="language-sh"><pre><code><span class="line"><span style="color:var(--vt-c-green);">$</span> <span style="color:#A6ACCD;">npm init vue@latest</span></span></code></pre></div>
+<div class="language-sh"><pre><code><span class="line"><span style="color:var(--vt-c-green);">$</span> <span style="color:#A6ACCD;">npm create vue@latest</span></span></code></pre></div>
 
 Cette commande installera et exécutera [create-vue](https://github.com/vuejs/create-vue), l'outil officiel d'élaboration d'un projet Vue.
 
@@ -85,7 +85,7 @@ L'extension du navigateur Vue devtools vous permet d'explorer l'arborescence des
 
 ## TypeScript {#typescript}
 
-Article principal : [Using Vue with TypeScript](/guide/typescript/overview).
+Article principal : [Utiliser Vue avec Typescript](/guide/typescript/overview).
 
 - [Volar](https://github.com/johnsoncodehk/volar) fournit une vérification de type pour les composants monofichiers utilisant des blocs `<script lang="ts">`, y compris les expressions de templates et la validation de props entre composants.
 
@@ -93,7 +93,7 @@ Article principal : [Using Vue with TypeScript](/guide/typescript/overview).
 
 ## Testing {#testing}
 
-Article principal : [Testing Guide](/guide/scaling-up/testing).
+Article principal : [Guide de test](/guide/scaling-up/testing).
 
 - [Cypress](https://www.cypress.io/) est recommandé pour les tests E2E. Il peut également être utilisé pour les tests de composants pour les composants monofichiers Vue via le [Cypress Component Test Runner](https://docs.cypress.io/guides/component-testing/introduction).
 
