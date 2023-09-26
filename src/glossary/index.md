@@ -172,7 +172,7 @@ Typiquement, un template depuis le DOM commence par un balisage HTML écrit dire
 
 Pour plus de détails, voir :
 - [Guide - Créer une application - Template de composant racine depuis le DOM](/guide/essentials/application.html#in-dom-root-component-template)
-- [Guide - Principes fondamentaux des composants - Mises en garde concernant l'analyse du template DOM](/guide/essentials/component-basics.html#dom-template-parsing-caveats)
+- [Guide - Principes fondamentaux des composants - Mises en garde concernant l'analyse du template DOM](/guide/essentials/component-basics.html#in-dom-template-parsing-caveats)
 - [Options: Rendu - template](/api/options-rendering.html#template)
 
 ## inject {#inject}
@@ -203,46 +203,46 @@ Pour plus de détails, voir :
 
 ## Options API {#options-api}
 
-Vue components are defined using objects. The properties of these component objects are known as *options*.
+Les composants Vue sont définis à l'aide d'objets. Les propriétés de ces objets composants sont appelées *options*.
 
-Components can be written in two styles. One style uses the [Composition API](#composition-api) in conjunction with `setup` (either via a `setup()` option or `<script setup>`). The other style makes very little direct use of the Composition API, instead using various component options to achieve a similar result. The component options that are used in this way are referred to as the *Options API*.
+Les composants peuvent être écrits dans deux styles. Un style utilise la [Composition API](#composition-api) en conjonction avec `setup` (soit via une option `setup()` ou `<script setup>`). L'autre style utilise plus ou moins directement la Composition API, utilisant plutôt diverses options de composants pour obtenir un résultat similaire. Les options de composants utilisées de cette manière représentent ce qu'on appelle l'*Options API*.
 
-The Options API includes options such as `data()`, `computed`, `methods` and `created()`.
+L'Options API inclut des options telles que `data()`, `computed`, `methods` et `created()`.
 
-Some options, such as `props`, `emits` and `inheritAttrs`, can be used when authoring components with either API. As they are component options, they could be considered part of the Options API. However, as these options are also used in conjunction with `setup()`, it is usually more useful to think of them as shared between the two component styles.
+Certaines options, telles que `props`, `emits` et `inheritAttrs`, peuvent être utilisées lors de la création de composants avec l'une ou l'autre API. Comme il s’agit d’options de composants, elles pourraient être considérées comme faisant partie de l’Options API. Cependant, comme ces options sont également utilisées conjointement avec `setup()`, il est généralement plus utile de les considérer comme partagées entre les deux styles de composants.
 
-The `setup()` function itself is a component option, so it *could* be described as part of the Options API. However, this is not how the term 'Options API' is normally used. Instead, the `setup()` function is considered to be part of Composition API.
+La fonction `setup()` elle-même est une option de composant, elle *pourrait* donc être décrite comme faisant partie de l'Options API. Cependant, ce n’est pas ainsi que le terme « Options API » est normalement utilisé. Au lieu de cela, la fonction `setup()` est considérée comme faisant partie de la Composition API.
 
 ## plugin {#plugin}
 
-While the term *plugin* can be used in a wide variety of contexts, Vue has a specific concept of a plugin as a way to add functionality to an application.
+Même si le terme *plugin* peut être utilisé dans une grande variété de contextes, Vue a un concept spécifique de plugin comme moyen d'ajouter des fonctionnalités à une application.
 
-Plugins are added to an application by calling `app.use(plugin)`. The plugin itself is either a function or an object with an `install` function. That function will be passed the application instance and can then do whatever it needs to do.
+Les plugins sont ajoutés à une application en appelant `app.use(plugin)`. Le plugin lui-même est soit une fonction, soit un objet avec une fonction `install`. Cette fonction recevra l'instance d'application et pourra alors faire tout ce qu'elle doit faire.
 
 Pour plus de détails, voir :
 - [Guide - Plugins](/guide/reusability/plugins.html)
 
 ## prop {#prop}
 
-There are three common uses of the term *prop* in Vue:
+Il existe trois utilisations courantes du terme *prop* dans Vue :
 
-* Component props
-* VNode props
-* Slot props
+* Props de composant
+* Props de VNode
+* Props de Slot
 
-*Component props* are what most people think of as props. These are explicitly defined by a component using either `defineProps()` or the `props` option.
+*Les props de composants* sont ce que la plupart des gens considèrent comme des props. Ils sont explicitement définis par un composant en utilisant soit `defineProps()` soit l'option `props`.
 
-The term *VNode props* refers to the properties of the object passed as the second argument to `h()`. These can include component props, but they can also include component events, DOM events, DOM attributes and DOM properties. You'd usually only encounter VNode props if you're working with render functions to manipulate VNodes directly.
+Le terme *props de VNode* fait référence aux propriétés de l'objet transmis en tant que second argument de `h()`. Il peut s'agir de props de composants, mais aussi d'événements de composants, d'événements DOM, d'attributs DOM et de propriétés DOM. Vous ne rencontrerez généralement les props VNode que si vous travaillez avec des fonctions de rendu pour manipuler directement les VNodes.
 
-*Slot props* are the properties passed to a scoped slot.
+Les *props de slot* sont les propriétés transmises à un scoped slot.
 
-In all cases, props are properties that are passed in from elsewhere.
+Dans tous les cas, les props sont des propriétés qui sont transmises depuis l'extérieur.
 
-While the word props is derived from the word *properties*, the term props has a much more specific meaning in the context of Vue. You should avoid using it as an abbreviation of properties.
+Bien que le mot props soit dérivé du mot *propriétés*, le terme props a une signification beaucoup plus spécifique dans le contexte de Vue. Vous devriez éviter de l'utiliser comme abréviation de propriétés.
 
 Pour plus de détails, voir :
 - [Guide - Props](/guide/components/props.html)
-- [Guide - Render Functions & JSX](/guide/extras/render-function.html)
+- [Guide - Fonctions de rendu et JSX](/guide/extras/render-function.html)
 - [Guide - Slots - Scoped Slots](/guide/components/slots.html#scoped-slots)
 
 ## provide / inject {#provide-inject}
@@ -258,32 +258,32 @@ Lorsqu'un composant *fournit* une valeur, tous les descendants de ce composant p
 Pour plus de détails, voir :
 - [Guide - provide / inject](/guide/components/provide-inject.html)
 
-## reactive effect {#reactive-effect}
+## effet réactif {#reactive-effect}
 
-A *reactive effect* is part of Vue's reactivity system. It refers to the process of tracking the dependencies of a function and re-running that function when the values of those dependencies change.
+Un *effet réactif* fait partie du système de réactivité de Vue. Il fait référence au processus de suivi des dépendances d'une fonction et à la ré-exécution de cette fonction lorsque les valeurs de ces dépendances changent.
 
-`watchEffect()` is the most direct way to create an effect. Various other parts of Vue use effects internally. e.g. component rendering updates, `computed()` and `watch()`.
+`watchEffect()` est la façon la plus directe de créer un effet. Plusieurs autres parties de Vue utilisent les effets en interne, par exemple les mises à jour du rendu des composants, `computed()` et `watch()`.
 
-Vue can only track reactive dependencies within a reactive effect. If a property's value is read outside a reactive effect it'll 'lose' reactivity, in the sense that Vue won't know what to do if that property subsequently changes.
+Vue ne peut suivre les dépendances réactives qu'à l'intérieur d'un effet réactif. Si la valeur d'une propriété est lue en dehors d'un effet réactif, elle 'perdra' sa réactivité, dans le sens où Vue ne saura pas quoi faire si cette propriété change par la suite.
 
-The term is derived from 'side effect'. Calling the effect function is a side effect of the property value being changed.
-
-Pour plus de détails, voir :
-- [Guide - Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
-
-## reactivity {#reactivity}
-
-In general, *reactivity* refers to the ability to automatically perform actions in response to data changes. For example, updating the DOM or making a network request when a data value changes.
-
-In a Vue context, reactivity is used to describe a collection of features. Those features combine to form a *reactivity system*, which is exposed via the [Reactivity API](#reactivity-api).
-
-There are various different ways that a reactivity system could be implemented. For example, it could be done by static analysis of code to determine its dependencies. However, Vue doesn't employ that form of reactivity system.
-
-Instead, Vue's reactivity system tracks property access at runtime. It does this using both Proxy wrappers and getter/setter functions for properties.
+Le terme est dérivé de 'effet de bord'. L'appel à la fonction d'effet est un effet de bord de la modification de la valeur de la propriété.
 
 Pour plus de détails, voir :
-- [Guide - Reactivity Fundamentals](/guide/essentials/reactivity-fundamentals.html)
-- [Guide - Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
+- [Guide - La réactivité en détails](/guide/extras/reactivity-in-depth.html)
+
+## réactivité {#reactivity}
+
+En général, la *réactivité* fait référence à la capacité d'effectuer automatiquement des actions en réponse à des changements de données. Par exemple, mettre à jour le DOM ou faire une requête réseau lorsqu'une valeur de données change.
+
+Dans le contexte de Vue, la réactivité est utilisée pour décrire un ensemble de fonctionnalités. Ces fonctionnalités se combinent pour former un *système de réactivité*, qui est exposé via l'[API de réactivité](#reactivity-api).
+
+Un système de réactivité peut être mis en œuvre de différentes manières. Par exemple, il pourrait être réalisé par une analyse statique du code pour déterminer ses dépendances. Cependant, Vue n'utilise pas cette forme de système de réactivité.
+
+Au lieu de cela, le système de réactivité de Vue suit l'accès aux propriétés au moment de l'exécution. Pour ce faire, il utilise à la fois des wrappers Proxy et des fonctions getter/setter pour les propriétés.
+
+Pour plus de détails, voir :
+- [Guide - Fondamentaux de la réactivité](/guide/essentials/reactivity-fundamentals.html)
+- [Guide - La réactivité en détails](/guide/extras/reactivity-in-depth.html)
 
 ## API de réactivité {#reactivity-api}
 
@@ -298,17 +298,17 @@ Pour plus de détails, voir :
 
 ## ref {#ref}
 
-> This entry is about the use of `ref` for reactivity. For the `ref` attribute used in templates, see [template ref](#template-ref) instead.
+> Nous parlons ici de l'utilisation de `ref` pour la réactivité. Pour l'attribut `ref` utilisé dans les templates, voir plutôt [ref de template](#template-ref).
 
-A `ref` is part of Vue's reactivity system. It is an object with a single reactive property, called `value`.
+Une `ref` fait partie du système de réactivité de Vue. C'est un objet avec une seule propriété réactive, appelée `value`.
 
-There are various different types of ref. For example, refs can be created using `ref()`, `shallowRef()`, `computed()`, and `customRef()`. The function `isRef()` can be used to check whether an object is a ref, and `isReadonly()` can be used to check whether the ref allows the direct reassignment of its value.
+Il existe différents types de ref. Par exemple, les refs peuvent être créées en utilisant `ref()`, `shallowRef()`, `computed()`, et `customRef()`. La fonction `isRef()` peut être utilisée pour vérifier si un objet est une ref, et `isReadonly()` peut être utilisée pour vérifier si la ref permet la réaffectation directe de sa valeur.
 
 Pour plus de détails, voir :
-- [Guide - Reactivity Fundamentals](/guide/essentials/reactivity-fundamentals.html)
-- [Reactivity API: Core](/api/reactivity-core.html)
-- [Reactivity API: Utilities](/api/reactivity-utilities.html)
-- [Reactivity API: Advanced](/api/reactivity-advanced.html)
+- [Guide - Fondamentaux de la réactivité](/guide/essentials/reactivity-fundamentals.html)
+- [API de la réactivité : Essentiel](/api/reactivity-core.html)
+- [API de la réactivité : Utilitaires](/api/reactivity-utilities.html)
+- [API de la réactivité : Avancé](/api/reactivity-advanced.html)
 
 ## fonction de rendu {#render-function}
 
@@ -342,25 +342,25 @@ Pour plus de détails, voir :
 
 ## SFC {#sfc}
 
-See [Single-File Component](#single-file-component).
+Voir [Composant monofichier](#single-file-component).
 
-## side effect {#side-effect}
+## effet de bord {#side-effect}
 
-The term *side effect* is not specific to Vue. It is used to describe operations or functions that do something beyond their local scope.
+Le terme *effet de bord* n'est pas spécifique à Vue. Il est utilisé pour décrire les opérations ou les fonctions qui font quelque chose au-delà de leur portée locale.
 
-For example, in the context of setting a property like `user.name = null`, it is expected that this will change the value of `user.name`. If it also does something else, like triggering Vue's reactivity system, then this would be described as a side effect. This is the origin of the term [reactive effect](#reactive-effect) within Vue.
+Par exemple, lors de l'affectation d'une propriété comme `user.name = null`, on s'attend à ce que cela change la valeur de `user.name`. Si cela fait aussi quelque chose d'autre, comme déclencher le système de réactivité de Vue, alors cela sera décrit comme un effet de bord. C'est l'origine du terme [effet réactif](#reactive-effect) dans Vue.
 
-When a function is described as having side effects, it means that the function performs some sort of action that is observable outside the function, aside from just returning a value. This might mean that it updates a value in state, or triggers a network request.
+Lorsqu'une fonction est décrite comme ayant des effets de bord, cela signifie qu'elle effectue une sorte d'action observable en dehors de la fonction, en plus de renvoyer une valeur. Cela peut signifier qu'elle met à jour une valeur dans l'état ou qu'elle déclenche une requête réseau.
 
-The term is often used when describing rendering or computed properties. It is considered best practice for rendering to have no side effects. Likewise, the getter function for a computed property should have no side effects.
+Ce terme est souvent utilisé pour décrire le rendu ou les propriétés calculées. On considère que la meilleure pratique pour le rendu est de ne pas avoir d'effets de bord. De même, la fonction getter d'une propriété calculée ne doit pas avoir d'effets de bord.
 
-## Single-File Component {#single-file-component}
+## Composant monofichier (ou _Single-File Component_) {#single-file-component}
 
-The term *Single-File Component*, or SFC, refers to the `.vue` file format that is commonly used for Vue components.
+Le terme *Single-File Component*, ou SFC, fait référence au format de fichier `.vue` couramment utilisé pour les composants Vue.
 
-See also:
-- [Guide - Single-File Components](/guide/scaling-up/sfc.html)
-- [SFC Syntax Specification](/api/sfc-spec.html)
+Voir aussi :
+- [Guide - Composants monofichiers](/guide/scaling-up/sfc.html)
+- [Spécifications liées à la syntaxe des composants monofichiers](/api/sfc-spec.html)
 
 ## slot {#slot}
 
@@ -369,22 +369,22 @@ Les slots sont utilisés pour transmettre du contenu aux composants enfants. Alo
 Pour plus de détails, voir :
 - [Guide - Slots](/guide/components/slots.html)
 
-## template ref {#template-ref}
+## ref de template {#template-ref}
 
-The term *template ref* refers to using a `ref` attribute on a tag within a template. After the component renders, this attribute is used to populate a corresponding property with either the HTML element or the component instance that corresponds to the tag in the template.
+Le terme *ref de template* fait référence à l'utilisation d'un attribut `ref` sur un élément à l'intérieur d'un template. Après le rendu du composant, cet attribut est utilisé pour remplir une propriété correspondante avec l'élément HTML ou l'instance de composant qui correspond à l'élément dans le template.
 
-If you are using the Options API then the refs are exposed via properties of the `$refs` object.
+Si vous utilisez l'Options API, les refs sont exposés via les propriétés de l'objet `$refs`.
 
-With the Composition API, template refs populate a reactive [ref](#ref) with the same name.
+Avec la Composition API, les refs de template alimentent une [ref](#ref) réactive portant le même nom.
 
-Template refs should not be confused with the reactive refs found in Vue's reactivity system.
+Il ne faut pas confondre les refs de templates avec les refs réactives du système de réactivité de Vue.
 
 Pour plus de détails, voir :
-- [Guide - Template Refs](/guide/essentials/template-refs.html)
+- [Guide - Les refs du template](/guide/essentials/template-refs.html)
 
 ## VDOM {#vdom}
 
-See [virtual DOM](#virtual-dom).
+Voir [DOM virtuel](#virtual-dom).
 
 ## virtual DOM {#virtual-dom}
 
