@@ -1,9 +1,5 @@
 # Glossaire {#glossary}
 
-:::warning Traduction en cours
-Notre équipe de traduction travaille sur la traduction du glossaire, vous pouvez rencontrer du contenu non traduit.
-:::
-
 Ce glossaire est destiné à fournir la signification des termes techniques couramment utilisés lorsque l'on parle de Vue. Il est destiné à être *descriptif* sur la façon dont les termes sont couramment utilisés, et non une spécification *prescriptive* de la façon dont ils doivent être utilisés. Certains termes peuvent avoir des significations ou des nuances légèrement différentes selon le contexte environnant.
 
 [[TOC]]
@@ -317,25 +313,25 @@ Une *fonction de rendu* est la partie d'un composant qui génère les VNodes uti
 Pour plus de détails, voir :
 - [Guide - Fonctions de rendu et JSX](/guide/extras/render-function.html)
 
-## scheduler {#scheduler}
+## programmateur {#scheduler}
 
-The *scheduler* is the part of Vue's internals that controls the timing of when [reactive effects](#reactive-effect) are run.
+Le *programmateur* est la partie des rouages internes de Vue qui contrôle le moment où les [effets réactifs](#reactive-effect) sont exécutés.
 
-When reactive state changes, Vue doesn't immediately trigger rendering updates. Instead, it batches them together using a queue. This ensures that a component only re-renders once, even if multiple changes are made to the underlying data.
+Lorsque l'état réactif change, Vue ne déclenche pas immédiatement les mises à jour du rendu. Au lieu de cela, il les regroupe à l'aide d'une file d'attente. Cela permet de s'assurer qu'un composant n'effectue qu'un seul nouveau rendu, même si plusieurs changements sont apportés aux données sous-jacentes.
 
-[Watchers](/guide/essentials/watchers.html) are also batched using the scheduler queue. Watchers with `flush: 'pre'` (the default) will run before component rendering, whereas those with `flush: 'post'` will run after component rendering.
+Les [Observateurs](/guide/essentials/watchers.html) sont également mis en lots en utilisant la file d'attente du programmateur. Les observateurs avec `flush: 'pre'` (par défaut) seront exécutés avant le rendu du composant, tandis que ceux avec `flush: 'post'` seront exécutés après le rendu du composant.
 
-Jobs in the scheduler are also used to perform various other internal tasks, such as triggering some [lifecycle hooks](#lifecycle-hooks) and updating [template refs](#template-ref).
+Les tâches du programmateur sont également utilisées pour effectuer diverses autres tâches internes, telles que le déclenchement de certains [hooks du cycle de vie](#lifecycle-hooks) et la mise à jour des [refs de template](#template-ref).
 
 ## scoped slot {#scoped-slot}
 
-The term *scoped slot* is used to refer to a [slot](#slot) that receives [props](#prop).
+Le terme *scoped slot* est utilisé pour désigner un [slot](#slot) qui reçoit des [props](#prop).
 
-Historically, Vue made a much greater distinction between scoped and non-scoped slots. To some extent they could be regarded as two separate features, unified behind a common template syntax.
+Historiquement, Vue faisait une plus grande distinction entre les slots scoped et non scoped. Dans une certaine mesure, ils pourraient être considérés comme deux fonctionnalités distinctes, unifiées derrière une syntaxe de template commune.
 
-In Vue 3, the slot APIs were simplified to make all slots behave like scoped slots. However, the use cases for scoped and non-scoped slots often differ, so the term still proves useful as a way to refer to slots with props.
+Dans Vue 3, les API des slots ont été simplifiées pour que tous les slots se comportent comme des scoped slots. Cependant, les cas d'utilisation des scoped slots et non scoped diffèrent souvent, de sorte que le terme s'avère toujours utile pour désigner les slots avec des props.
 
-The props passed to a slot can only be used within a specific region of the parent template, responsible for defining the slot's contents. This region of the template behaves as a variable scope for the props, hence the name 'scoped slot'.
+Les props transmis à un slot ne peuvent être utilisés que dans une région spécifique du template parent, responsable de la définition du contenu du slot. Cette région du template se comporte comme une variable de scope pour les props, d'où le nom de 'scoped slot'.
 
 Pour plus de détails, voir :
 - [Guide - Slots - Scoped Slots](/guide/components/slots.html#scoped-slots)
@@ -386,23 +382,23 @@ Pour plus de détails, voir :
 
 Voir [DOM virtuel](#virtual-dom).
 
-## virtual DOM {#virtual-dom}
+## DOM virtuel {#virtual-dom}
 
-The term *virtual DOM* (VDOM) is not unique to Vue. It is a common approach used by several web frameworks for managing updates to the UI.
+Le terme *DOM virtuel* (VDOM) n'est pas propre à Vue. Il s'agit d'une approche commune utilisée par plusieurs frameworks web pour gérer les mises à jour de l'interface utilisateur.
 
-Browsers use a tree of nodes to represent the current state of the page. That tree, and the JavaScript APIs used to interact with it, are referred to as the *document object model*, or *DOM*.
+Les navigateurs utilisent un arbre de nœuds pour représenter l'état actuel de la page. Cet arbre, et les API JavaScript utilisées pour interagir avec celui-ci, représentent le *document object model*, ou *DOM*.
 
-Manipulating the DOM is a major performance bottleneck. The virtual DOM provides one strategy for managing that.
+La manipulation du DOM est un goulot d'étranglement majeur pour les performances. Le DOM virtuel fournit une stratégie pour gérer cela.
 
-Rather than creating DOM nodes directly, Vue components generate a description of what DOM nodes they would like. These descriptors are plain JavaScript objects, known as VNodes (virtual DOM nodes). Creating VNodes is relatively cheap.
+Plutôt que de créer directement des nœuds DOM, les composants Vue génèrent une description des nœuds DOM qu'ils souhaitent. Ces descripteurs sont des objets JavaScript simples, connus sous le nom de VNodes (nœud virtuel du DOM). La création de VNodes est relativement peu coûteuse.
 
-Every time a component re-renders, the new tree of VNodes is compared to the previous tree of VNodes and any differences are then applied to the real DOM. If nothing has changed then the DOM doesn't need to be touched.
+Chaque fois qu'un composant est rerendu, le nouvel arbre de VNodes est comparé à l'arbre de VNodes précédent et toutes les différences sont alors appliquées au DOM réel. Si rien n'a changé, le DOM n'a pas besoin d'être modifié.
 
-Vue uses a hybrid approach that we call [Compiler-Informed Virtual DOM](/guide/extras/rendering-mechanism.html#compiler-informed-virtual-dom). Vue's template compiler is able to apply performance optimizations based on static analysis of the template. Rather than performing a full comparison of a component's old and new VNode trees at runtime, Vue can use information extracted by the compiler to reduce the comparison to just the parts of the tree that can actually change.
+Vue utilise une approche hybride que nous appelons [DOM virtuel basé sur la compilation](/guide/extras/rendering-mechanism.html#compiler-informed-virtual-dom). Le compilateur de template de Vue est capable d'appliquer des optimisations de performance basées sur l'analyse statique du template. Plutôt que d'effectuer une comparaison complète des anciens et nouveaux arbres VNode d'un composant au moment de l'exécution, Vue peut utiliser les informations extraites par le compilateur pour réduire la comparaison aux seules parties de l'arbre qui peuvent réellement changer.
 
 Pour plus de détails, voir :
-- [Guide - Rendering Mechanism](/guide/extras/rendering-mechanism.html)
-- [Guide - Render Functions & JSX](/guide/extras/render-function.html)
+- [Guide - Mécanismes de rendu](/guide/extras/rendering-mechanism.html)
+- [Guide - Fonctions de rendu et JSX](/guide/extras/render-function.html)
 
 ## VNode {#vnode}
 

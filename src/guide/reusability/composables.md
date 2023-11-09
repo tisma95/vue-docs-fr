@@ -216,18 +216,21 @@ export function useFetch(url) {
   const data = ref(null)
   const error = ref(null)
 
-
-  const fetchData = (dt) => {
-    fetch(toValue(url))
-    .then((res) => res.json())
-    .then((json) => (data.value = json))
-    .catch((err) => (error.value = err))
-	}
- 
-  watchEffect(() => {
+  const fetchData = () => {
     // réinitialiser l'état avant de récupérer..
-    fetchData(url)
+    data.value = null
+    error.value = null
+
+    fetch(toValue(url))
+      .then((res) => res.json())
+      .then((json) => (data.value = json))
+      .catch((err) => (error.value = err))
+  }
+
+  watchEffect(() => {
+    fetchData()
   })
+
   return { data, error }
 }
 ```
@@ -298,7 +301,7 @@ C'est OK d'effectuer des effets de bord (par exemple, ajouter des écouteurs d'�
 
 ### Restriction d'usage {#usage-restrictions}
 
-Les composables ne peuvent être appelés dans `<script setup>` ou dans le hook `setup()`. Ils ne doivent être appelés que de manière **synchrone** dans ces contextes. Dans certains cas, vous pouvez également les appeler dans des hooks de cycle de vie comme `onMounted()`.
+Les composables ne peuvent être appelés que dans `<script setup>` ou dans le hook `setup()`. Ils ne doivent être appelés que de manière **synchrone** dans ces contextes. Dans certains cas, vous pouvez également les appeler dans des hooks de cycle de vie comme `onMounted()`.
 
 Ces restrictions sont importantes car ce sont ces contextes où Vue est capable de déterminer l'instance de composant active actuelle. L'accès à une instance de composant actif est nécessaire pour que :
 

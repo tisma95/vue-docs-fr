@@ -84,7 +84,7 @@ watch(
 
 L'un des éléments les plus importants de l'accessibilité est de s'assurer que le design peut soutenir une mise en œuvre accessible. Le design doit tenir compte non seulement du contraste des couleurs, de la sélection des polices, du dimensionnement du texte et de la langue, mais également de la structure du contenu dans l'application.
 
-### Headings {#headings}
+### Titres {#headings}
 
 Les utilisateurs peuvent naviguer dans une application à travers les titres. Le fait d'avoir des titres descriptifs pour chaque section de votre application permet aux utilisateurs de prédire plus facilement le contenu de celle-ci. En ce qui concerne les titres, il existe quelques pratiques d'accessibilité recommandées :
 
@@ -163,7 +163,7 @@ Remarquez comment vous pouvez inclure `autocomplete='on'` sur l'élément de for
 Utilisez des labels pour décrire le but de chaque contrôle de formulaire ; en liant `for` et `id`.
 
 ```vue-html
-<label for="name">Name</label>
+<label for="name">Name: </label>
 <input type="text" name="name" id="name" v-model="name" />
 ```
 
@@ -191,7 +191,7 @@ Associer les labels avec un id correspondant est mieux supporté par les technol
 Vous pouvez aussi donner un nom accessible au champ avec [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label).
 
 ```vue-html
-<label for="name">Name</label>
+<label for="name">Name: </label>
 <input
   type="text"
   name="name"
@@ -220,7 +220,7 @@ Utiliser [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Access
 >
   <h1 id="billing">Billing</h1>
   <div class="form-item">
-    <label for="name">Name:</label>
+    <label for="name">Name: </label>
     <input
       type="text"
       name="name"
@@ -250,7 +250,7 @@ L'attribut [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Acces
 >
   <h1 id="billing">Billing</h1>
   <div class="form-item">
-    <label for="name">Full Name:</label>
+    <label for="name">Full Name: </label>
     <input
       type="text"
       name="name"
@@ -330,7 +330,7 @@ Vous pouvez fournir des instructions complémentaires et associer plusieurs ids 
 ```vue-html
 <fieldset>
   <legend>Using aria-labelledby</legend>
-  <label id="date-label" for="date">Current Date:</label>
+  <label id="date-label" for="date">Current Date: </label>
   <input
     type="date"
     name="date"
@@ -346,7 +346,7 @@ De façon alternative, vous pouvez attacher les instructions au champ avec [`ari
 ```vue-html
 <fieldset>
   <legend>En utilisant aria-describedby</legend>
-  <label id="dob" for="dob">Date of Birth:</label>
+  <label id="dob" for="dob">Date of Birth: </label>
   <input type="date" name="dob" id="dob" aria-describedby="dob-instructions" />
   <p id="dob-instructions">MM/DD/YYYY</p>
 </fieldset>
@@ -450,7 +450,7 @@ Vous pouvez utiliser cette technique pour créer des images fonctionnelles.
 </form>
 ```
 
-<!-- <common-codepen-snippet title="Functional Images" slug="jOyLGqM" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" /> --> 
+<!-- <common-codepen-snippet title="Functional Images" slug="jOyLGqM" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
 
 ## Standards {#standards}
 
@@ -518,7 +518,6 @@ WAI-ARIA du W3C fournit des conseils sur comment construire du contenu dynamique
 - Autres outils utiles
   - [HeadingMap](https://chrome.google.com/webstore/detail/headingsmap/flbjommegcjonpdmenkdiocclhjacmbi?hl=fr-FR)
   - [Color Oracle](https://colororacle.org)
-  - [Focus Indicator](https://chrome.google.com/webstore/detail/focus-indicator/heeoeadndnhebmfebjccbhmccmaoedlf?hl=fr-FR)
   - [NerdeFocus](https://chrome.google.com/webstore/detail/nerdefocus/lpfiljldhgjecfepfljnbjnbjfhennpd?hl=fr-FR)
   - [Visual Aria](https://chrome.google.com/webstore/detail/visual-aria/lhbmajchkkmakajkjenkchhnhbadmhmk?hl=fr-FR)
   - [Simulateur d'accessibilité de site web Silktide](https://chrome.google.com/webstore/detail/silktide-website-accessib/okcpiimdfkpkjcbihbmhppldhiebhhaf?hl=fr-FR)
