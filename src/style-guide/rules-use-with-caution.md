@@ -176,6 +176,7 @@ defineProps({
 ```vue
 <script setup>
 import { getCurrentInstance } from 'vue'
+
 const props = defineProps({
   todo: {
     type: Object,
