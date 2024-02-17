@@ -6,11 +6,11 @@ Ce que vous voyez dans l'éditeur est un composant Vue monofichier (SFC). Un SFC
 
 </div>
 
-La caractéristique principale de Vue est le **rendu déclaratif** : à l'aide d'une syntaxe de modèle qui étend le HTML, nous pouvons décrire comment le HTML devrait ressembler en fonction de l'état du JavaScript. Lorsque l'état change, le HTML est automatiquement mis à jour.
+La caractéristique principale de Vue est le **rendu déclaratif** : à l'aide d'une syntaxe de modèle qui étend le HTML, nous pouvons décrire la structure du HTML en fonction de l'état du JavaScript. Lorsque l'état change, le HTML est automatiquement mis à jour.
 
 <div class="composition-api">
 
-Les états qui peuvent déclencher des mises à jour lorsqu'ils sont modifiés sont considérés comme **réactifs**. Nous pouvons déclarer un état réactif en utilisant l'API `reactive()` de Vue. Les objets créés par `reactive()` sont des [Proxy JavaScript](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Proxy) qui fonctionnent comme des objets normaux :
+Un état qui peut déclencher des mises à jour lorsqu'il est modifié est considéré comme **réactif**. Nous pouvons déclarer un état réactif en utilisant l'API `reactive()` de Vue. Les objets créés par `reactive()` sont des [Proxy JavaScript](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Proxy) qui fonctionnent comme des objets normaux :
 
 ```js
 import { reactive } from 'vue'
