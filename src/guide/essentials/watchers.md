@@ -272,6 +272,42 @@ watch(
 
 </div>
 
+
+## Observateurs unitaires <sup class="vt-badge" data-text="3.4+" /> {#once-watchers}
+
+La fonction de rappel de l'observateur sera exécutée dès lors qu'une source observée change. Si vous voulez que la fonction de rappel soit déclenchée une seule fois quand il y a un changement, utilisez l'option `once: true`.
+
+<div class="options-api">
+  
+```js
+export default {
+  watch: {
+    source: {
+      handler(newValue, oldValue) {
+        // quand `source` change, déclenchée une seule fois
+      },
+      once: true
+    }
+  }
+}
+```
+
+</div>
+
+<div class="composition-api">
+
+```js
+watch(
+  source,
+  (newValue, oldValue) => {
+    // quand `source` change, déclenchée une seule fois
+  },
+  { once: true }
+)
+```
+
+</div>
+
 <div class="composition-api">
 
 ## `watchEffect()` \*\* {#watcheffect}
@@ -335,7 +371,7 @@ Comme pour les mises à jour de composants, les rappels de l'observateur créés
 
 Par défaut, le rappel d'un observateur est appelé **après** les mises à jour du composant parent (le cas échéant), et **avant** les mises à jour du DOM du composant propriétaire. Cela signifie que si vous tentez d'accéder au DOM du composant propriétaire à l'intérieur d'un callback de l'observateur, le DOM sera dans un état de pré-mise à jour.
 
-### Publier des Observateurs {#post-watchers}
+### Observateurs à posterio {#post-watchers}
 
 Si vous voulez accéder au DOM **après** que Vue l'ait mis à jour, vous devez spécifier l'option `flush: 'post'` :
 
@@ -379,7 +415,7 @@ watchPostEffect(() => {
 
 </div>
 
-### Observateurs de synchronisation {#sync-watchers}
+### Observateurs synchrones {#sync-watchers}
 
 Il est également possible de créer un observateur qui se déclenche de manière synchrone, avant toute mise à jour gérée par Vue.
 
