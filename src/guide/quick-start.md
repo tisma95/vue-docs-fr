@@ -10,7 +10,7 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 
 ## En ligne {#try-vue-online}
 
-- Pour vous familiariser rapidement avec Vue, vous pouvez l'essayer directement dans notre [Essayez en ligne](https://play.vuejs.org/#eNo9jcEKwjAMhl/lt5fpQYfXUQfefAMvvRQbddC1pUuHUPrudg4HIcmXjyRZXEM4zYlEJ+T0iEPgXjn6BB8Zhp46WUZWDjCa9f6w9kAkTtH9CRinV4fmRtZ63H20Ztesqiylphqy3R5UYBqD1UyVAPk+9zkvV1CKbCv9poMLiTEfR2/IXpSoXomqZLtti/IFwVtA9A==).
+- Pour vous familiariser rapidement avec Vue, vous pouvez l'essayer directement dans notre [Playground](https://play.vuejs.org/#eNo9jcEKwjAMhl/lt5fpQYfXUQfefAMvvRQbddC1pUuHUPrudg4HIcmXjyRZXEM4zYlEJ+T0iEPgXjn6BB8Zhp46WUZWDjCa9f6w9kAkTtH9CRinV4fmRtZ63H20Ztesqiylphqy3R5UYBqD1UyVAPk+9zkvV1CKbCv9poMLiTEfR2/IXpSoXomqZLtti/IFwVtA9A==).
 
 - Si vous préférez une configuration HTML simple sans outil de build, vous pouvez utiliser [JSFiddle](https://jsfiddle.net/yyx990803/2ke1ab0z/) comme point de départ.
 
@@ -117,7 +117,7 @@ Si vous n'êtes pas sûr d'une option, choisissez simplement `No` en appuyant su
 
 Vous devriez maintenant avoir votre premier projet Vue en cours d'exécution ! Notez que les composants d'exemple dans le projet généré sont écrits avec la [Composition API](/guide/introduction#composition-api) et `<script setup>`, plutôt que l'[Options API](/guide/introduction#options-api). Voici quelques conseils supplémentaires :
 
-- L'environnement de développement recommandé est [Visual Studio Code](https://code.visualstudio.com/) + [Volar extension](https://marketplace.visualstudio.com/items?itemName=Vue.volar). Si vous utilisez d'autres éditeurs, lisez la [section sur le support des environnements de développement](/guide/scaling-up/tooling#ide-support).
+- L'environnement de développement recommandé est [Visual Studio Code](https://code.visualstudio.com/) + [l'extension Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar). Si vous utilisez d'autres éditeurs, lisez la [section sur le support des environnements de développement](/guide/scaling-up/tooling#ide-support).
 - [Guide - Outils](/guide/scaling-up/tooling) fournit plus de détails sur les utilitaires, notamment sur l'intégration avec les frameworks back-end.
 - Pour en savoir plus sur l'outil de compilation Vite, consultez la [documentation Vite](https://vitejs.dev).
 - Si vous avez choisi d'utiliser TypeScript, consultez le [Guide d'utilisation de TypeScript](typescript/overview).
@@ -369,6 +369,8 @@ Si votre navigateur préféré ne prend pas encore en charge les Import Maps, vo
 
 :::warning À éviter en production
 L'usage des Import Maps est destiné à l'apprentissage uniquement. Si vous avez l'intention d'utiliser Vue sans outils de compilation en production, consultez le [Guide de déploiement en production](/guide/best-practices/production-deployment#without-build-tools).
+
+Bien qu'il soit possible d'utiliser Vue sans outil de build, une alternative à considérer consiste à utiliser [`vuejs/petite-vue`](https://github.com/vuejs/petite-vue) qui pourrait mieux convenir au contexte dans lequel [`jquery/jquery`](https://github.com/jquery/jquery) (dans le passé) ou [`alpinejs/alpine`](https://github.com/alpinejs/alpine) (actuellement) pourrait plutôt être utilisée.
 :::
 
 ### Séparation des modules {#splitting-up-the-modules}
