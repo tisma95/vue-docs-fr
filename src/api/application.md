@@ -90,6 +90,18 @@ Démonte une instance d'application montée, déclenchant les hooks de cycle de 
   }
   ```
 
+## app.onUnmount() <sup class="vt-badge" data-text="3.5+" /> {#app-onunmount}
+
+Enregistre une fonction de rappel à exécuter lorsque l'application est démontée.
+
+- **Type**
+
+  ```ts
+  interface App {
+    onUnmount(callback: () => any): void
+  }
+  ```
+
 ## app.component() {#app-component}
 
 Enregistre un composant global si un nom et une définition de composant sont passés ensemble, ou récupère un composant déjà enregistré si seul le nom est passé.
@@ -271,7 +283,9 @@ Fournit une valeur pouvant être injectée dans tous les composants descendants 
   - [App-level Provide](/guide/components/provide-inject#app-level-provide)
   - [app.runWithContext()](#app-runwithcontext)
 
-## app.runWithContext()<sup class="vt-badge" data-text="3.3+" /> {#app-runwithcontext}
+## app.runWithContext() {#app-runwithcontext}
+
+- Supporté à partir de la version 3.3
 
 Exécute une fonction de rappel avec l'application courante comme contexte injecté.
 
@@ -610,3 +624,41 @@ Objet permettant de définir des stratégies de fusion pour les options de compo
   ```
 
 - **Voir aussi** [L'instance de composant - `$options`](/api/component-instance#options)
+
+## app.config.idPrefix <sup class="vt-badge" data-text="3.5+" /> {#app-config-idprefix}
+
+Configurer un préfixe pour tous les identifiants générés via [useId()](/api/general#useid) dans l'application.
+
+- **Type:** `string`
+
+- **Default:** `undefined`
+
+- **Example**
+
+  ```js
+  app.config.idPrefix = 'my-app'
+  ```
+
+  ```js
+  // in a component:
+  const id1 = useId() // 'my-app:0'
+  const id2 = useId() // 'my-app:1'
+  ```
+
+## app.config.throwUnhandledErrorInProduction <sup class="vt-badge" data-text="3.5+" /> {#app-config-throwunhandlederrorinproduction}
+
+Forcer l'envoi des erreurs non gérées en mode production.
+
+- **Type:** `boolean`
+
+- **Default:** `false`
+
+- **Détails**
+
+  Par défaut, les erreurs lancées dans une application Vue mais non gérées explicitement ont un comportement différent entre les modes développement et production :
+
+  - Lors du développement, l'erreur est lancée et peut éventuellement faire planter l'application. Il s'agit de rendre l'erreur plus visible afin qu'elle puisse être remarquée et corrigée au cours du développement.
+
+  - En production, l'erreur ne sera consignée que dans la console afin de minimiser l'impact sur les utilisateurs finaux. Toutefois, cela peut empêcher les erreurs qui ne se produisent qu'en production d'être détectées par les services de surveillance des erreurs.
+
+  En mettant `app.config.throwUnhandledErrorInProduction` à `true`, les erreurs non gérées seront lancées même en mode production.

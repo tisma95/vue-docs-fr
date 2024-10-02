@@ -45,6 +45,7 @@ const nav: ThemeConfig['nav'] = [
         text: 'Ressources',
         items: [
           { text: 'Partenaires', link: '/partners/' },
+          { text: 'Développeurs', link: '/developers/' },
           { text: 'Thèmes', link: '/ecosystem/themes' },
           { text: 'Composants UI', link: 'https://ui-libs.vercel.app/' },
           {
@@ -131,9 +132,13 @@ const nav: ThemeConfig['nav'] = [
     link: '/sponsor/'
   },
   {
-    text: 'Partenaires',
-    link: '/partners/',
-    activeMatch: `^/partners/`
+    text: 'Experts',
+    badge: { text: 'NEW' },
+    activematch: `^/(partners|developers)/`,
+    items: [
+      { text: 'Partenaires', link: '/partners/' },
+      { text: 'Développeurs', link: '/developers/', badge: { text: 'NEW' } }
+    ]
   }
 ]
 
@@ -386,6 +391,10 @@ export const sidebar: ThemeConfig['sidebar'] = {
         {
           text: 'Injection de dépendances',
           link: '/api/composition-api-dependency-injection'
+        },
+        {
+          text: 'Helpers',
+          link: '/api/composition-api-helpers'
         }
       ]
     },
@@ -438,6 +447,7 @@ export const sidebar: ThemeConfig['sidebar'] = {
     {
       text: 'API avancées',
       items: [
+        { text: 'Web Components', link: '/api/custom-elements' },
         { text: 'Fonctions de rendu', link: '/api/render-function' },
         { text: 'Rendu côté serveur', link: '/api/ssr' },
         {
@@ -619,6 +629,10 @@ const i18n: ThemeConfig['i18n'] = {
 export default defineConfigWithTheme<ThemeConfig>({
   extends: baseConfig,
 
+  sitemap: {
+    hostname: 'https://fr.vuejs.org'
+  },
+
   lang: 'fr-FR',
   title: 'Vue.js',
   description: 'Vue.js - Le Framework JavaScript Évolutif',
@@ -765,7 +779,7 @@ export default defineConfigWithTheme<ThemeConfig>({
     algolia: {
       indexName: 'fr-vuejs',
       appId: 'HH5AXEOM9U',
-      apiKey: 'b33b47187a1497e2a75b99d8a4deee38'
+      apiKey: 'b33b47187a1497e2a75b99d8a4deee38',
     },
 
     carbonAds: {
@@ -821,7 +835,6 @@ export default defineConfigWithTheme<ThemeConfig>({
       }
     },
     build: {
-      minify: 'terser',
       chunkSizeWarningLimit: Infinity
     },
     json: {

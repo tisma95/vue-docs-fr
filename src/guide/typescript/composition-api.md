@@ -68,10 +68,21 @@ Cette limitation a été résolue en 3.3. La dernière version de Vue prend en c
 
 ### Valeurs par défaut des props {#props-default-values}
 
-En utilisant la déclaration basée sur le type, nous perdons la possibilité de déclarer des valeurs par défaut pour les props. Ceci peut être résolu par la macro de compilation `withDefaults` :
+En utilisant la déclaration basée sur le type, nous perdons la possibilité de déclarer des valeurs par défaut pour les props. Ceci peut être résolu par la [destructuration réactive des props](/guide/components/props#reactive-props-destructure) <sup class="vt-badge" data-text="3.5+" /> :
 
 ```ts
-export interface Props {
+interface Props {
+  msg?: string
+  labels?: string[]
+}
+
+const { msg = 'hello', labels = ['one', 'two'] } = defineProps<Props>()
+```
+
+Dans les versions 3.4 et suivantes, la destructuration réactive des props n'est pas activé par défaut. Une alternative est d'utiliser la macro de compilation `withDefaults` :
+
+```ts
+interface Props {
   msg?: string
   labels?: string[]
 }
@@ -85,7 +96,7 @@ const props = withDefaults(defineProps<Props>(), {
 Ceci sera compilé en options à l'exécution `default` équivalentes aux props. De plus, `withDefaults` fournit des vérifications de type pour les valeurs par défaut, et assure que le type `props` retourné n'a pas les options facultatives pour les propriétés qui ont des valeurs déclarées par défaut.
 
 :::info
-Il convient de noter que les valeurs par défaut des types de référence mutables (tels que les tableaux ou les objets) doivent être intégrées dans des fonctions afin d'éviter toute modification accidentelle et tout effet secondaire externe. Cela permet de s'assurer que chaque instance de composant reçoit sa propre copie de la valeur par défaut.
+Notez que les valeurs par défaut de référence mutables (comme les tableaux ou les objets) doivent être enveloppées dans des fonctions lors de l'utilisation de `withDefaults` afin d'éviter toute modification accidentelle et tout effet de bord externe. Cela permet de s'assurer que chaque instance de composant reçoit sa propre copie de la valeur par défaut. Ceci n'est **pas** nécessaire lors de l'utilisation de valeurs par défaut avec destructuration.
 :::
 
 ### Sans `<script setup>` {#without-script-setup}
@@ -360,6 +371,17 @@ const foo = inject('foo') as string
 
 ## Typer les refs de template {#typing-template-refs}
 
+Avec Vue 3.5 et `@vue/language-tools` 2.1 (qui alimente à la fois le service linguistique de l'IDE et `vue-tsc`), le type des refs créés par `useTemplateRef()` dans les SFC peut être **automatiquement déduit** pour les refs statiques en fonction de l'élément sur lequel l'attribut `ref` correspondant est utilisé.
+
+Dans les cas où l'auto-inférence n'est pas possible, vous pouvez toujours convertir le template ref en un type explicite via l'argument générique :
+
+```ts
+const el = useTemplateRef<HTMLInputElement>(null)
+```
+
+<details>
+<summary>Utilisation avant la version 3.5</summary>
+
 Les références du template doivent être créées avec un argument de type générique explicite et une valeur initiale de `null` :
 
 ```vue
@@ -378,21 +400,57 @@ onMounted(() => {
 </template>
 ```
 
+</details>
+
 Pour obtenir la bonne interface du DOM, vous pouvez consulter les pages comme [MDN](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#technical_summary).
 
 Notez que pour une sécurité de type stricte, il est nécessaire d'utiliser un chaînage optionnel ou des gardes de type lors de l'accès à `el.value`. Ceci s'explique par le fait que la valeur initiale d'une ref est `null` jusqu'à ce que le composant soit monté, et elle peut aussi être mise à `null` si l'élément référencé est démonté via un `v-if`.
 
 ## Typer les refs du template d'un composant {#typing-component-template-refs}
 
-Parfois, vous pouvez avoir besoin d'annoter une ref du template pour un composant enfant afin d'appeler sa méthode publique. Par exemple, nous avons un composant enfant `MyModal` avec une méthode qui ouvre la modale :
+Avec Vue 3.5 et `@vue/language-tools` 2.1 (qui alimente à la fois le service linguistique de l'IDE et `vue-tsc`), le type de refs créés par `useTemplateRef()` dans les SFC peut être **automatiquement déduit** pour les refs statiques en fonction de l'élément ou du composant sur lequel l'attribut `ref` correspondant est utilisé.
+
+Dans les cas où l'auto-inférence n'est pas possible (par exemple, utilisation non-SFC ou composants dynamiques), vous pouvez toujours convertir la référence du template en un type explicite par l'intermédiaire de l'argument générique.
+
+Pour obtenir le type d'instance d'un composant importé, nous devons d'abord obtenir son type via `typeof`, puis utiliser l'utilitaire intégré `InstanceType` de TypeScript pour extraire son type d'instance :
+
+```vue{5}
+<!-- App.vue -->
+<script setup lang="ts">
+import { useTemplateRef } from 'vue'
+import Foo from './Foo.vue'
+import Bar from './Bar.vue'
+
+type FooType = InstanceType<typeof Foo>
+type BarType = InstanceType<typeof Bar>
+
+const compRef = useTemplateRef<FooType | BarType>('comp')
+</script>
+
+<template>
+  <component :is="Math.random() > 0.5 ? Foo : Bar" ref="comp" />
+</template>
+```
+
+Dans les cas où le type exact du composant n'est pas disponible ou n'est pas important, `ComponentPublicInstance` peut être utilisé à la place. Cela n'inclura que les propriétés qui sont partagées par tous les composants, comme `$el` :
+
+```ts
+import { useTemplateRef } from 'vue'
+import type { ComponentPublicInstance } from 'vue'
+
+const child = useTemplateRef<ComponentPublicInstance | null>(null)
+```
+
+Dans le cas où le composant référencé est un [composant générique](/guide/typescript/overview.html#generic-components), par exemple `MyGenericModal` :
 
 ```vue
-<!-- MyModal.vue -->
-<script setup lang="ts">
+<!-- MyGenericModal.vue -->
+<script setup lang="ts" generic="ContentType extends string | number">
 import { ref } from 'vue'
 
-const isContentShown = ref(false)
-const open = () => (isContentShown.value = true)
+const content = ref<ContentType | null>(null)
+
+const open = (newContent: ContentType) => (content.value = newContent)
 
 defineExpose({
   open
@@ -400,26 +458,21 @@ defineExpose({
 </script>
 ```
 
-Afin d'obtenir le type d'instance de `MyModal`, nous devons d'abord obtenir son type via `typeof`, puis utiliser l'utilitaire intégré `InstanceType` de TypeScript pour extraire son type d'instance :
+Il doit être référencé en utilisant `ComponentExposed` de la bibliothèque [`vue-component-type-helpers`](https://www.npmjs.com/package/vue-component-type-helpers) car `InstanceType` ne fonctionnera pas.
 
-```vue{5}
+```vue
 <!-- App.vue -->
 <script setup lang="ts">
-import MyModal from './MyModal.vue'
+import { useTemplateRef } from 'vue'
+import MyGenericModal from './MyGenericModal.vue'
+import type { ComponentExposed } from 'vue-component-type-helpers'
 
-const modal = ref<InstanceType<typeof MyModal> | null>(null)
+const modal = useTemplateRef<ComponentExposed<typeof MyGenericModal>>(null)
 
 const openModal = () => {
-  modal.value?.open()
+  modal.value?.open('newValue')
 }
 </script>
 ```
 
-Dans les cas où le type exact du composant n'est pas disponible ou n'est pas important, le type `ComponentPublicInstance` peut être utilisé à la place. Cela n'inclura que les propriétés partagées par tous les composants, telles que `$el` :
-
-```ts
-import { ref } from 'vue'
-import type { ComponentPublicInstance } from 'vue'
-
-const child = ref<ComponentPublicInstance | null>(null)
-```
+Notez qu'avec `@vue/language-tools` 2.1+, les types des refs statiques des templates peuvent être automatiquement déduits et ce qui précède n'est nécessaire que dans les cas extrêmes.

@@ -445,7 +445,7 @@ function emitValue(e) {
 </script>
 
 <template>
-  <input type="text" :value="modelValue" @input="emitValue" />
+  <input type="text" :value="props.modelValue" @input="emitValue" />
 </template>
 ```
 

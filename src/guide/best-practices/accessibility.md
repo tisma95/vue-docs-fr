@@ -10,7 +10,7 @@ Visitez le guide de [planification et pilotage de la prise en compte de l’acce
 
 Vous devez ajouter un lien en haut de chaque page qui mène directement à la zone de contenu principale afin que les utilisateurs puissent ignorer les zones de regroupement de contenus répétées sur plusieurs pages web.
 
-Typiquement, cela se fait en haut de `App.vue`  car ce sera le premier élément pouvant être ciblé sur toutes vos pages :
+Typiquement, cela se fait en haut de `App.vue` car ce sera le premier élément pouvant être ciblé sur toutes vos pages :
 
 ```vue-html
 <ul class="skip-links">
@@ -116,20 +116,16 @@ Les utilisateurs peuvent naviguer dans une application à travers les titres. Le
 
 [Les rôles ARIA landmark](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/landmark_role) permettent d'accéder programmatiquement aux sections d'une application. Les utilisateurs qui s'appuient sur des technologies d'assistance peuvent naviguer vers chaque section de l'application et passer d'un contenu à l'autre. Vous pouvez utiliser les [rôles ARIA](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles) pour vous aider à atteindre ce résultat.
 
-| HTML            | Rôle ARIA            | But du landmark                                                                                                                |
-| --------------- | ---------------------| ------------------------------------------------------------------------------------------------------------------------------ |
-| header          | role="banner"        | Entête principal : titre de la page.                                                                                           |
-| nav             | role="navigation"    | Collection de liens utilisables lors de la navigation dans le document ou vers des documents associés                          |
-| main            | role="main"          | Le contenu central ou principal du document.                                                                                   |
-| footer          | role="contentinfo"   | Information à propos du document parent : notes de pied de page/copyrights/liens vers la déclaration de confidentialité        |
-| aside           | role="complementary" | Supporte le contenu principal, malgré tout est séparé et a du sens par lui-même                                                |
-| search          | role="search"        | Cette section contient la fonctionnalité de recherche pour l'application                                                       |
-| form            | role="form"          | Collection d'éléments associés à un formulaire                                                                                 |
-| section         | role="region"        | Contenus pertinents vers lesquels les utilisateurs sont susceptibles de naviguer. Un libellé doit être fourni pour cet élément |
-
-:::tip Remarque :
-Il est recommandé d'utiliser des éléments HTML landmark avec des attributs de rôle landmark redondants afin d'optimiser la compatibilité avec les anciens [navigateurs qui ne prennent pas en charge les éléments sémantiques HTML5](https://caniuse.com/#feat=html5semantic).
-:::
+| HTML    | Rôle ARIA            | But du landmark                                                                                                                |
+| ------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| header  | role="banner"        | Entête principal : titre de la page.                                                                                           |
+| nav     | role="navigation"    | Collection de liens utilisables lors de la navigation dans le document ou vers des documents associés                          |
+| main    | role="main"          | Le contenu central ou principal du document.                                                                                   |
+| footer  | role="contentinfo"   | Information à propos du document parent : notes de pied de page/copyrights/liens vers la déclaration de confidentialité        |
+| aside   | role="complementary" | Supporte le contenu principal, malgré tout est séparé et a du sens par lui-même                                                |
+| search  | role="search"        | Cette section contient la fonctionnalité de recherche pour l'application                                                       |
+| form    | role="form"          | Collection d'éléments associés à un formulaire                                                                                 |
+| section | role="region"        | Contenus pertinents vers lesquels les utilisateurs sont susceptibles de naviguer. Un libellé doit être fourni pour cet élément |
 
 [Aller plus loin à propos des landmarks](https://www.w3.org/TR/wai-aria-1.2/#landmark_roles)
 
@@ -167,8 +163,6 @@ Utilisez des labels pour décrire le but de chaque contrôle de formulaire ; e
 
 Si vous inspectez cet élément dans vos Outils de développement Chrome et que vous ouvrez l'onglet Accessibilité dans l'onglet Éléments, vous verrez comment le champ prend son nom du label :
 
-![Outils de développement Chrome montrant un nom de champs accessible via son label](./images/AccessibleLabelChromeDevTools.png)
-
 :::warning Attention :
 Vous pourriez avoir vu cette façon d'envelopper un champ de saisie par un label :
 
@@ -197,7 +191,7 @@ Vous pouvez aussi donner un nom accessible au champ avec [`aria-label`](https://
 />
 ```
 
-N'hésitez pas à inspecter cet élément dans les outils de développeur de Chrome pour voir comment le nom accessible a changé.
+N'hésitez pas à inspecter cet élément dans les outils de développeur de Chrome pour voir comment le nom accessible a changé :
 
 ![Outils de développement de Chrome montrant le nom accessible d'un champs via aria-label](./images/AccessibleARIAlabelDevTools.png)
 
@@ -231,7 +225,7 @@ Utiliser [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Access
 
 #### `aria-describedby` {#aria-describedby}
 
-L'attribut [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) est utilisé de la même manière que  `aria-labelledby` à l'exception qu'il fournit une description avec de l'information supplémentaire pour l'utilisateur. Cela peut être utilisé pour décrire le critère pour n'importe quel champ :
+L'attribut [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) est utilisé de la même manière que `aria-labelledby` à l'exception qu'il fournit une description avec de l'information supplémentaire pour l'utilisateur. Cela peut être utilisé pour décrire le critère pour n'importe quel champ :
 
 ```vue-html
 <form

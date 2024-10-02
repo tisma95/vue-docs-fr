@@ -35,7 +35,7 @@ Fournit des effets de transition animés à **un seul** élément ou composant.
     name?: string
     /**
      * S'il faut appliquer les classes de transition CSS ou non
-     * Default: true
+     * Par défaut: true
      */
     css?: boolean
     /**
@@ -58,7 +58,7 @@ Fournit des effets de transition animés à **un seul** élément ou composant.
     mode?: 'in-out' | 'out-in' | 'default'
     /**
      * Si la transition doit être appliquée au rendu initial ou non.
-     * Default: false
+     * Par défaut: false
      */
     appear?: boolean
 
@@ -286,6 +286,12 @@ Rend le contenu de son slot à une autre partie du DOM.
      * Peut être changé de manière dynamique.
      */
     disabled?: boolean
+    /**
+     * Lorsque la valeur est `true`, le traitement de Teleport sera reporté jusqu'à ce que d'autres
+     * parties de l'application aient été montées avant
+     * de résoudre sa cible. (A partir de la version 3.5)
+     */
+    defer?: boolean
   }
   ```
 
@@ -307,6 +313,15 @@ Rend le contenu de son slot à une autre partie du DOM.
   </Teleport>
   ```
 
+  Différer la résolution du conteneur cible <sup class="vt-badge" data-text="3.5+" /> :
+
+  ```vue-html
+  <Teleport defer to="#late-div">...</Teleport>
+
+  <!-- plus loins dans le template -->
+  <div id="late-div"></div>
+  ```
+
 - **Voir aussi** [Guide - Teleport](/guide/built-ins/teleport)
 
 ## `<Suspense>` <sup class="vt-badge experimental" /> {#suspense}
@@ -317,7 +332,7 @@ Utilisé pour orchestrer des dépendances asynchrones imbriquées dans un arbre 
 
   ```ts
   interface SuspenseProps {
-    timeout?: string | number,
+    timeout?: string | number
     suspensible?: boolean
   }
   ```

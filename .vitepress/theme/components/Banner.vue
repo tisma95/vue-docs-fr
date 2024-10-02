@@ -33,7 +33,10 @@ function dismiss() {
 html:not(.banner-dismissed) {
   --vt-banner-height: 30px;
 }
-<style scoped>.banner {
+</style>
+
+<style scoped>
+.banner {
   position: fixed;
   z-index: var(--vp-z-index-banner);
   box-sizing: border-box;
@@ -47,10 +50,12 @@ html:not(.banner-dismissed) {
   font-weight: 600;
   color: #fff;
   background-color: var(--vt-c-green);
-  background: linear-gradient(90deg,
-      rgba(66, 184, 131, 1) 0%,
-      rgba(39, 179, 137, 1) 19%,
-      rgba(100, 126, 255, 1) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(66, 184, 131, 1) 0%,
+    rgba(39, 179, 137, 1) 19%,
+    rgba(100, 126, 255, 1) 100%
+  );
 }
 
 .banner-dismissed .banner {
@@ -61,7 +66,7 @@ a:hover {
   text-decoration: underline;
 }
 
-button {
+.banner button {
   position: absolute;
   right: 0;
   top: 0;
@@ -74,7 +79,6 @@ button {
   fill: #fff;
   transform: rotate(45deg);
 }
-
 /*
 @media (max-width: 720px) {
   a > span {
