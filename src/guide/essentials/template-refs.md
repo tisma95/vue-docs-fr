@@ -31,7 +31,7 @@ onMounted(() => {
 </template>
 ```
 
-Lorsque vous utilisez TypeScript, le support IDE de Vue et `vue-tsc` déduiront automatiquement le type de `inputRef.value` en fonction de l'élément ou du composant sur lequel l'attribut `ref` correspondant est utilisé.
+Lorsque vous utilisez TypeScript, le support IDE de Vue et `vue-tsc` déduiront automatiquement le type de `input.value` en fonction de l'élément ou du composant sur lequel l'attribut `ref` correspondant est utilisé.
 
 <details>
 <summary>Utilisation avant 3.5</summary>
@@ -115,7 +115,7 @@ Voir aussi : [Typer les refs du template](/guide/typescript/composition-api#typi
 
 ## Refs à l'intérieur d'un `v-for` {#refs-inside-v-for}
 
-> Requiert v3.2.25 ou ultérieure
+> Requiert v3.5 ou ultérieure
 
 <div class="composition-api">
 
@@ -149,6 +149,8 @@ onMounted(() => console.log(itemRefs.value))
 <summary>Utilisation avant 3.5</summary>
 
 Dans les versions antérieurs à la 3.5 où `useTemplateRef()` n'était pas encore introduit, nous devions déclarer une ref avec un nom qui corresponde à la valeur de l'attribut ref du template. La ref devait également contenir un valeur sous forme de tableau :
+
+In versions before 3.5 where `useTemplateRef()` was not introduced, we need to declare a ref with a name that matches the template ref attribute's value. The ref should also contain an array value:
 
 ```vue
 <script setup>
