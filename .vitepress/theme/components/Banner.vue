@@ -66,7 +66,7 @@ a:hover {
   text-decoration: underline;
 }
 
-.banner button {
+button {
   position: absolute;
   right: 0;
   top: 0;
