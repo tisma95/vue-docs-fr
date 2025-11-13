@@ -25,40 +25,29 @@ Il est également recommandé d'utiliser ces terrains de jeu en ligne pour fourn
 
 Pour commencer avec Vite + Vue, exécutez simplement :
 
-<VTCodeGroup>
-  <VTCodeGroupTab label="npm">
+::: code-group
 
-```sh
+```sh [npm]
 $ npm create vue@latest
 ```
 
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="pnpm">
-
-```sh
+```sh [pnpm]
 $ pnpm create vue@latest
 ```
 
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="yarn">
+```sh [yarn]
+# Avec Yarn Moderne (v2+)
+$ yarn create vue@latest
 
-```sh
-  # Avec Yarn Moderne (v2+)
-  $ yarn create vue@latest
-
-  # Avec Yarn ^v4.11
-  $ yarn dlx create-vue@latest
+# Avec Yarn ^v4.11
+$ yarn dlx create-vue@latest
 ```
 
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="bun">
-
-```sh
+```sh [bun]
 $ bun create vue@latest
 ```
 
-  </VTCodeGroupTab>
-</VTCodeGroup>
+:::
 
 Cette commande installera et exécutera [create-vue](https://github.com/vuejs/create-vue), l'outil officiel d'élaboration d'un projet Vue.
 
@@ -113,7 +102,7 @@ L'extension du navigateur Vue devtools vous permet d'explorer l'arborescence des
 ![devtools screenshot](./images/devtools.png)
 
 - [Documentation](https://devtools.vuejs.org/)
-- [Extension Chrome](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
+- [Extension Chrome](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
 - [Addon Firefox](https://addons.mozilla.org/fr/firefox/addon/vue-js-devtools/)
 - [Plugin Vite](https://devtools.vuejs.org/guide/vite-plugin)
 - [Application autonome Electron](https://devtools.vuejs.org/guide/installation.html#standalone)

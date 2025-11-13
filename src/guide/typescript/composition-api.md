@@ -1,5 +1,9 @@
 # TypeScript avec la Composition API {#typescript-with-composition-api}
 
+<ScrimbaLink href="https://scrimba.com/links/vue-ts-composition-api" title="Leçon gratuite de TypeScript Vue.js avec la Composition API"  type="scrimba">
+  Voir une leçon vidéo interactive sur Scrimba
+</ScrimbaLink>
+
 > Cette page part du principe que vous avez déjà pris connaissance de comment [utiliser Vue avec TypeScript](./overview).
 
 ## Typer les props des composants {#typing-component-props}
@@ -414,8 +418,7 @@ Dans les cas où l'auto-inférence n'est pas possible (par exemple, utilisation 
 
 Pour obtenir le type d'instance d'un composant importé, nous devons d'abord obtenir son type via `typeof`, puis utiliser l'utilitaire intégré `InstanceType` de TypeScript pour extraire son type d'instance :
 
-```vue{5}
-<!-- App.vue -->
+```vue{6,7} [App.vue]
 <script setup lang="ts">
 import { useTemplateRef } from 'vue'
 import Foo from './Foo.vue'
@@ -443,8 +446,7 @@ const child = useTemplateRef<ComponentPublicInstance>('child')
 
 Dans le cas où le composant référencé est un [composant générique](/guide/typescript/overview.html#generic-components), par exemple `MyGenericModal` :
 
-```vue
-<!-- MyGenericModal.vue -->
+```vue [MyGenericModal.vue]
 <script setup lang="ts" generic="ContentType extends string | number">
 import { ref } from 'vue'
 
@@ -460,14 +462,14 @@ defineExpose({
 
 Il doit être référencé en utilisant `ComponentExposed` de la bibliothèque [`vue-component-type-helpers`](https://www.npmjs.com/package/vue-component-type-helpers) car `InstanceType` ne fonctionnera pas.
 
-```vue
-<!-- App.vue -->
+```vue [App.vue]
 <script setup lang="ts">
 import { useTemplateRef } from 'vue'
 import MyGenericModal from './MyGenericModal.vue'
 import type { ComponentExposed } from 'vue-component-type-helpers'
 
-const modal = useTemplateRef<ComponentExposed<typeof MyGenericModal>>('modal')
+const modal =
+  useTemplateRef<ComponentExposed<typeof MyGenericModal>>('modal')
 
 const openModal = () => {
   modal.value?.open('newValue')
@@ -476,3 +478,41 @@ const openModal = () => {
 ```
 
 Notez qu'avec `@vue/language-tools` 2.1+, les types des refs statiques des templates peuvent être automatiquement déduits et ce qui précède n'est nécessaire que dans les cas extrêmes.
+
+## Typer les directives globales personnalisées {#typing-global-custom-directives}
+
+Afin d'obtenir des indications de type et une vérification de type pour les directives personnalisées globales déclarées avec `app.directive()`, vous pouvez étendre `ComponentCustomProperties`
+
+```ts [src/directives/highlight.ts]
+import type { Directive } from 'vue'
+
+export type HighlightDirective = Directive<HTMLElement, string>
+
+declare module 'vue' {
+  export interface ComponentCustomProperties {
+    // préfixe avec v (v-highlight)
+    vHighlight: HighlightDirective
+  }
+}
+
+export default {
+  mounted: (el, binding) => {
+    el.style.backgroundColor = binding.value
+  }
+} satisfies HighlightDirective
+```
+
+```ts [main.ts]
+import highlight from './directives/highlight'
+// ...autre code
+const app = createApp(App)
+app.directive('highlight', highlight)
+```
+
+Utilisation dans un composant
+
+```vue [App.vue]
+<template>
+  <p v-highlight="'blue'">This sentence is important!</p>
+</template>
+```

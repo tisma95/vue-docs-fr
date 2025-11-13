@@ -6,7 +6,7 @@ Nous pensons qu'il n'existe pas de solution unique pour le web. C'est pourquoi V
 
 Vue peut être utilisé comme un fichier de script autonome, sans outil de build nécessaire! Si vous avez déjà un framework backend qui rend la plupart de l'HTML ou si votre logique frontend n'est pas assez complexe pour justifier des outils de build, c'est la manière la plus facile d'intégrer Vue à votre stack. Vous pouvez considérer Vue comme un remplacement plus déclaratif de jQuery dans de tels cas.
 
-Vue fournit également une distribution alternative appelée [petite-vue](https://github.com/vuejs/petite-vue) qui est spécifiquement optimisée pour améliorer progressivement l'HTML existant. Elle a un jeu de fonctionnalités plus restreint, mais est extrêmement légère et utilise une implémentation plus efficace dans les scénarios sans étape de build.
+Nous proposions auparavant une distribution alternative appelée [petite-vue](https://github.com/vuejs/petite-vue) qui était spécialement optimisée pour améliorer progressivement le HTML existant. Cependant, petite-vue n'est plus activement maintenue, la dernière version ayant été publiée dans Vue 3.2.27.
 
 ## Intégration des Web Components {#embedded-web-components}
 
@@ -53,7 +53,7 @@ L'équipe Vue maintient également un générateur de site statique appelé [Vit
 
 Bien que Vue soit principalement conçu pour construire des applications Web, il n'est en aucun cas limité au navigateur. Vous pouvez :
 
-- Construire des applications de bureau avec [Electron](https://www.electronjs.org/)
+- Construire des applications de bureau avec [Electron](https://www.electronjs.org/) ou [Wails](https://wails.io)
 - Construire des applications mobiles avec [Ionic Vue](https://ionicframework.com/docs/vue/overview)
 - Construire des applications de bureau et mobile à partir du même code avec [Quasar](https://quasar.dev/) ou [Tauri](https://tauri.app)
 - Créez des expériences 3D WebGL avec [TresJS](https://tresjs.org/)

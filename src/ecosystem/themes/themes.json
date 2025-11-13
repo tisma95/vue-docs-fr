@@ -1,5 +1,19 @@
 [
   {
+    "name": "Nuxt UI",
+    "description": "[Nuxt UI](https://ui.nuxt.com/) is an intuitive, open-source UI library for Vue and Nuxt applications. Built with Tailwind CSS and Reka UI, it provides 100+ beautifully crafted, accessible components with a flexible CSS-first design system.",
+    "seeMoreUrl": "https://ui.nuxt.com",
+    "products": [
+      {
+        "name": "Dashboard",
+        "price": 0,
+        "description": "Professional Vue Dashboard Template showcasing Nuxt UI capabilities.",
+        "url": "https://vue-dashboard-template.nuxt.dev",
+        "image": "https://res.cloudinary.com/nuxt/image/upload/v1742036101/nuxt-ui/nuxt-ui-dashboard-social-card_kpeysq.png"
+      }
+    ]
+  },
+  {
     "name": "Creative Tim",
     "description": "Grâce aux exemples ci-dessous, élaborés par nos partenaires de [Creative Tim](https://creative-tim.com?affiliate_id=116187), vous pouvez voir comment une application du monde réel est construite, la pile technologique qui est derrière et comment la plupart des concepts que vous avez appris jusqu'à présent s'appliquent dans une application du monde réel.",
     "seeMoreUrl": "https://www.creative-tim.com/bootstrap-themes/vuejs-themes?affiliate_id=116187",
@@ -258,14 +272,14 @@
       },
       {
         "name": "Berry Vue3 Admin Dashboard",
-        "price": 49,
+        "price": 59,
         "description": "Discover our visually captivating Vue 3 Dashboard Theme!",
         "url": "https://codedthemes.com/item/berry-vue-admin-dashboard/?ref=evan.vuejs",
         "image": "https://org-public-assets.s3.us-west-2.amazonaws.com/Banners/Berry-pro-vue.png"
       },
       {
         "name": "Mantis Vue3 Admin Dashboard",
-        "price": 49,
+        "price": 59,
         "description": "Simple yet rebust to start any development with latest VueJs and Vuetify",
         "url": "https://codedthemes.com/item/mantis-vue-admin-template/?ref=evan.vuejs",
         "image": "https://org-public-assets.s3.us-west-2.amazonaws.com/Banners/Mantis-pro-vue.png"
@@ -285,11 +299,18 @@
         "image": "https://org-public-assets.s3.us-west-2.amazonaws.com/Banners/Able+pro-free-vue.png"
       },
       {
-        "name": "Able Pro Vue3 + Vuetify Dashboard",
-        "price": 11,
-        "description": "Vue3 + Vite + Vuetify + Typescript",
-        "url": "https://codedthemes.com/item/able-pro-vuejs-admin-dashboard/?ref=evan.vuejs",
-        "image": "https://org-public-assets.s3.us-west-2.amazonaws.com/Banners/Able+pro-pro-vue.png"
+        "name": "Free Datta Able Vue Admin Template",
+        "price": 0,
+        "description": "Free & Open Source VueJs Bootstrap Admin Template",
+        "url": "https://codedthemes.com/item/datta-able-free-vue-admin-template/?ref=evan.vuejs",
+        "image": "https://org-public-assets.s3.us-west-2.amazonaws.com/Banners/Datta+able-free-vue.png"
+      },
+      {
+        "name": "Datta Able Vue + Bootstrap Admin Template",
+        "price": 59,
+        "description": "Premium VueJs + Bootstrap + Vite + Typescript Admin Template",
+        "url": "https://codedthemes.com/item/datta-able-vue-admin-template/?ref=evan.vuejs",
+        "image": "https://org-public-assets.s3.us-west-2.amazonaws.com/Banners/Datta+able-pro-vue.png"
       }
     ]
   },
@@ -316,7 +337,7 @@
         "name": "Sneat - Template Admin Vue Laravel",
         "price": 0,
         "description": "Template Admin VueJS Laravel libre et open source utilisant le système de conception Sneat",
-        "url": "https://themeselection.com/item/sneat-free-vuetify-vuejs-laravel-admin-template/ref=14",
+        "url": "https://themeselection.com/item/sneat-free-vuetify-vuejs-laravel-admin-template/?ref=14",
         "image": "https://cdn.themeselection.com/ts-assets/sneat/sneat-vuetify-vuejs-laravel-admin-template-free/banner/banner.png"
       },
       {

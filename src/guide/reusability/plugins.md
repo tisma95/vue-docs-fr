@@ -40,8 +40,7 @@ Afin de mieux comprendre comment créer vos propres plugins Vue.js, nous allons 
 
 Commençons par configurer l'objet plugin. Il est recommandé de le créer dans un fichier séparé et de l'exporter, comme montré ci-dessous, afin que la logique reste contenue et séparée.
 
-```js
-// plugins/i18n.js
+```js [plugins/i18n.js]
 export default {
   install: (app, options) => {
     // Le code du plugin s'écrit ici
@@ -57,8 +56,7 @@ Nous voulons créer une fonction de traduction. Cette fonction recevra une chaî
 
 Puisque cette fonction devrait être disponible globalement dans tous les templates, nous allons nous en assurer en l'attachant à `app.config.globalProperties` dans notre plugin :
 
-```js{4-11}
-// plugins/i18n.js
+```js{3-10} [plugins/i18n.js]
 export default {
   install: (app, options) => {
     // injecte une méthode globalement disponible $translate()
@@ -97,10 +95,9 @@ N'utilisez que rarement les propriétés globales, car cela peut rapidement deve
 
 ### Provide / Inject avec les plugins {#provide-inject-with-plugins}
 
-Les plugins nous permettent également d'utiliser `inject` pour fournir une fonction ou un attribut aux utilisateurs du plugin. Par exemple, nous pouvons permettre à l'application d'avoir accès au paramètre `options` pour pouvoir utiliser l'objet translations.
+Les plugins nous permettent également d'utiliser `provide` pour donner aux utilisateurs du plugin l'accès à une fonction ou à un attribut. Par exemple, nous pouvons permettre à l'application d'avoir accès au paramètre `options` pour pouvoir utiliser l'objet translations.
 
-```js{10}
-// plugins/i18n.js
+```js{3} [plugins/i18n.js]
 export default {
   install: (app, options) => {
     app.provide('i18n', options)
@@ -112,7 +109,7 @@ Les utilisateurs de plugins pourront désormais injecter les options du plugin d
 
 <div class="composition-api">
 
-```vue
+```vue{4}
 <script setup>
 import { inject } from 'vue'
 
@@ -125,7 +122,7 @@ console.log(i18n.greetings.hello)
 </div>
 <div class="options-api">
 
-```js
+```js{2}
 export default {
   inject: ['i18n'],
   created() {

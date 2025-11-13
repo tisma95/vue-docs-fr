@@ -298,16 +298,20 @@ function inc() {
 :::warning
 Si vous avez une valeur `default` pour la propriété `defineModel` et que vous ne fournissez aucune valeur pour cette propriété à partir du composant parent, cela peut provoquer une désynchronisation entre les composants parent et enfant. Dans l'exemple ci-dessous, le composant parent `myRef` est undefined, mais le composant enfant `model` vaut 1 :
 
-```js
-// composant enfant :
+```vue [Child.vue]
+<script setup>
 const model = defineModel({ default: 1 })
-
-// composant parent :
-const myRef = ref()
+</script>
 ```
 
-```html
-<Child v-model="myRef"></Child>
+```vue [Parent.vue]
+<script setup>
+const myRef = ref()
+</script>
+
+<template>
+  <Child v-model="myRef"></Child>
+</template>
 ```
 
 :::
@@ -520,6 +524,18 @@ defineProps<{
   list: U[]
 }>()
 </script>
+```
+
+Vous pouvez utiliser la directive `@vue-generic` pour passer des types explicites, lorsque le type ne peut pas être déduit :
+
+```vue
+<template>
+  <!-- @vue-generic {import('@/api').Actor} -->
+  <ApiSelect v-model="peopleIds" endpoint="/api/actors" id-prop="actorId" />
+
+  <!-- @vue-generic {import('@/api').Genre} -->
+  <ApiSelect v-model="genreIds" endpoint="/api/genres" id-prop="genreId" />
+</template>
 ```
 
 Pour utiliser une référence d'un composant générique dans une 'ref', il convient d'utiliser la librairie [`vue-component-type-helpers`](https://www.npmjs.com/package/vue-component-type-helpers) au lieu de `InstanceType` qui ne fonctionnera pas.
